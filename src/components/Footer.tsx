@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
         </p>
         <div className="mt-4">
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/mymallesh/"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-2 text-white hover:text-blue-500 transition duration-300"
@@ -34,15 +34,15 @@ const Footer: React.FC = () => {
             <i className="fab fa-facebook fa-lg"></i>
           </a>
           <a
-            href="https://www.twitter.com"
+            href="https://x.com/sevamysuru"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-2 text-white hover:text-blue-400 transition duration-300"
           >
-            <i className="fab fa-twitter fa-lg"></i>
+            <i className="fab fa-x-twitter fa-lg"></i>
           </a>
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/orangesevasamsthemysore/"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-2 text-white hover:text-pink-500 transition duration-300"
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             <i className="fab fa-instagram fa-lg"></i>
           </a>
           <a
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/orange-seva-samsthe-r-mysore-mysore-karnataka-india-891848242/"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-2 text-white hover:text-blue-700 transition duration-300"
