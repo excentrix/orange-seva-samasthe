@@ -18,9 +18,7 @@ const Contact: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="mb-6 text-lg">
-            Get in touch with Orange Seva Samasthe:
-          </p>
+          <p className="mb-6 text-lg">Get in touch with Orange Seva Samsthe:</p>
           <ul className="list-none space-y-4">
             <motion.li
               whileHover={{ scale: 1.05 }}

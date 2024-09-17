@@ -15,7 +15,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-5xl font-extrabold text-white mb-6"
           >
-            Welcome to Orange Seva Samasthe
+            Welcome to Orange Seva Samsthe
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 50 }}

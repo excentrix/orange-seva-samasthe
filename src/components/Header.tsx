@@ -52,10 +52,10 @@ const Header: React.FC = () => {
         >
           <img
             src="/media/logo.jpg"
-            alt="Orange Seva Samasthe"
+            alt="Orange Seva Samsthe"
             className="w-8 h-8 sm:w-12 sm:h-12"
           />
-          <span className="hidden sm:inline">Orange Seva Samasthe</span>
+          <span className="hidden sm:inline">Orange Seva Samsthe</span>
         </Link>
 
         {/* Mobile menu button */}

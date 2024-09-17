@@ -36,7 +36,7 @@ const Donate: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               Bank Details for Direct Transfer:
             </h2>
-            <p>Account Name: Orange Seva Samasthe (R), Mysore</p>
+            <p>Account Name: Orange Seva Samsthe (R), Mysore</p>
             <p>Account Number: 39260100003979</p>
             <p>Bank Name: Bank of Baroda</p>
             <p>Branch: Hebbal, Mysore</p>
