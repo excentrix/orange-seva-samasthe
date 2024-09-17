@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center hero h-1/2 bg-gradient-to-r from-orange-600 to-yellow-500 py-24 ">
+      <section className="flex flex-col items-center justify-center hero h-screen bg-gradient-to-r from-orange-600 to-yellow-500 w-full">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}

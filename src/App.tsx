@@ -1,60 +1,81 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Gallery from "./components/Gallery";
-import Testimonials from "./pages/Testimonials";
-import Contact from "./pages/Contact";
-import Donate from "./pages/Donate";
-import { Mission } from "./pages/Mission";
-import { Impact } from "./pages/Impact";
-import { History } from "./pages/History";
-import { Team } from "./pages/Team";
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
+// import Home from "./pages/Home";
+// import Projects from "./pages/Projects";
+// import Gallery from "./components/Gallery";
+// import Testimonials from "./pages/Testimonials";
+// import Contact from "./pages/Contact";
+// import Donate from "./pages/Donate";
+// import { Mission } from "./pages/Mission";
+// import { Impact } from "./pages/Impact";
+// import { History } from "./pages/History";
+// import { Team } from "./pages/Team";
+
+import { HelmetProvider } from "react-helmet-async";
+import StructuredData from "./components/StructuredData";
+
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Donate = lazy(() => import("./pages/Donate"));
+const Footer = lazy(() => import("./components/Footer"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const Header = lazy(() => import("./components/Header"));
+const Home = lazy(() => import("./pages/Home"));
+const Impact = lazy(() => import("./pages/Impact"));
+const Mission = lazy(() => import("./pages/Mission"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Testimonials = lazy(() => import("./pages/Testimonials"));
+const Team = lazy(() => import("./pages/Team"));
+const History = lazy(() => import("./pages/History"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        {/* Header component */}
-        <Header />
+    <HelmetProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Router>
+          <div className="flex flex-col min-h-screen bg-gray-50">
+            <Header />
 
-        {/* Main content area */}
-        <main className="flex-grow">
-          <Routes>
-            {/* Home page route */}
-            <Route path="/" element={<Home />} />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
 
-            {/* About page route */}
-            <Route path="/about" element={<About />} />
-            <Route path="/about/mission" element={<Mission />} />
-            <Route path="/about/impact" element={<Impact />} />
-            <Route path="/about/history" element={<History />} />
-            <Route path="/about/team" element={<Team />} />
+                {/* About page routes */}
+                <Route path="/about" element={<About />} />
+                <Route path="/about/mission" element={<Mission />} />
+                <Route path="/about/impact" element={<Impact />} />
+                <Route path="/about/history" element={<History />} />
+                <Route path="/about/team" element={<Team />} />
 
-            {/* Projects page route */}
-            <Route path="/projects" element={<Projects />} />
+                <Route path="/projects" element={<Projects />} />
 
-            {/* Gallery page route */}
-            <Route path="/gallery" element={<Gallery />} />
+                <Route path="/gallery" element={<Gallery />} />
 
-            {/* Testimonials page route */}
-            <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="/testimonials" element={<Testimonials />} />
 
-            {/* Contact page route */}
-            <Route path="/contact" element={<Contact />} />
+                <Route path="/contact" element={<Contact />} />
 
-            {/* Donate page route */}
-            <Route path="/donate" element={<Donate />} />
-          </Routes>
-        </main>
+                <Route path="/donate" element={<Donate />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
 
-        {/* Footer component */}
-        <Footer />
-      </div>
-    </Router>
+            {/* Footer component */}
+            <Footer />
+          </div>
+        </Router>
+      </Suspense>
+      <StructuredData
+        type="NGO"
+        name="Orange Seva Samsthe"
+        url="https://www.orangeseva.in"
+        logo="https://www.orangeseva.in/media/logo.jpg"
+        description="Orange Seva Samsthe is an NGO dedicated to creating sustainable change and empowering communities through innovative social initiatives."
+      />
+    </HelmetProvider>
   );
 };
 

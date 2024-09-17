@@ -57,3 +57,5 @@ export const History = () => (
     </Card>
   </motion.div>
 );
+
+export default History;

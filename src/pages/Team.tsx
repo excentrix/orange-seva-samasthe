@@ -39,3 +39,5 @@ export const Team = () => (
     </Card>
   </motion.div>
 );
+
+export default Team;

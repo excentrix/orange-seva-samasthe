@@ -9,7 +9,7 @@ const pageVariants = {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export const Mission = () => (
+const Mission = () => (
   <motion.div
     initial="initial"
     animate="animate"
@@ -41,3 +41,5 @@ export const Mission = () => (
     </Card>
   </motion.div>
 );
+
+export default Mission;
