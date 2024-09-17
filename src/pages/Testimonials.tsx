@@ -1,34 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { client, urlFor } from "@/lib/sanity";
+
+interface Image {
+  _id: string;
+  image: any;
+  alt: string;
+}
 
 interface Testimonial {
+  _id: string;
   name: string;
-  content: string;
-  image: string;
+  quote: string;
+  role: string;
+  image: Image;
 }
 
 const Testimonials: React.FC = () => {
-  const testimonials: Testimonial[] = [
-    {
-      name: "Ramesh Kumar",
-      content:
-        "Orange Seva Samaste's food distribution program has been a lifesaver for my family. We're grateful for their support during tough times.",
-      image: "/path/to/ramesh-image.jpg",
-    },
-    {
-      name: "Lakshmi S.",
-      content:
-        "The skill development workshop organized by OSS helped me secure a job. Their dedication to empowering women is truly commendable.",
-      image: "/path/to/lakshmi-image.jpg",
-    },
-    {
-      name: "Venkatesh Rao",
-      content:
-        "Thanks to the medical camp conducted by Orange Seva Samaste, I received timely treatment for my eye condition. Their service is invaluable to our community.",
-      image: "/path/to/venkatesh-image.jpg",
-    },
-    // Add more testimonials as needed
-  ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const data = await client.fetch(`
+        *[_type == "testimonial"]{
+          _id,
+          name,
+          quote,
+          role,
+          image{
+            'image': asset._ref
+          }
+        }
+      `);
+      // const data = await client.fetch(`
+      //   *[_type == "testimonial"]{
+      //     _id,
+      //     name,
+      //     quote,
+      //     role,
+      //     "image": image->{
+      //       _id,
+      //       "image": image.asset->url,
+      //       alt
+      //     }
+      //   }
+      // `);
+      setTestimonials(data);
+    };
+    fetchTestimonials();
+  }, []);
 
   return (
     <div className="bg-off-white py-16">
@@ -44,22 +64,33 @@ const Testimonials: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial._id}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              className="bg-white rounded-lg shadow-lg overflow-hidden w-full items-center flex flex-col"
             >
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-full h-48 object-cover"
-              />
+              {testimonial.image && (
+                <img
+                  src={urlFor(testimonial.image.image)
+                    .width(400)
+                    .height(200)
+                    .fit("crop")
+                    .url()}
+                  alt={testimonial.image.alt || testimonial.name}
+                  className="w-48 h-48 object-cover rounded-full mt-6"
+                />
+              )}
               <div className="p-6">
                 <p className="text-gray-600 italic mb-4">
-                  "{testimonial.content}"
+                  "{testimonial.quote}"
                 </p>
                 <p className="font-semibold text-right">- {testimonial.name}</p>
+                {testimonial.role && (
+                  <p className="text-sm text-gray-500 text-right">
+                    {testimonial.role}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}

@@ -4,7 +4,7 @@ const Contact: React.FC = () => {
   return (
     <div className="container mx-auto mt-8">
       <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-      <p className="mb-4">Get in touch with Orange Seva Samaste:</p>
+      <p className="mb-4">Get in touch with Orange Seva Samasthe:</p>
       <ul className="list-none">
         <li className="mb-2">
           <strong>Address:</strong> #296, 7th Cross, A-Main, Cellar, Hebbal 1st

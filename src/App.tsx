@@ -9,6 +9,10 @@ import Gallery from "./components/Gallery";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
+import { Mission } from "./pages/Mission";
+import { Impact } from "./pages/Impact";
+import { History } from "./pages/History";
+import { Team } from "./pages/Team";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +29,10 @@ const App: React.FC = () => {
 
             {/* About page route */}
             <Route path="/about" element={<About />} />
+            <Route path="/about/mission" element={<Mission />} />
+            <Route path="/about/impact" element={<Impact />} />
+            <Route path="/about/history" element={<History />} />
+            <Route path="/about/team" element={<Team />} />
 
             {/* Projects page route */}
             <Route path="/projects" element={<Projects />} />

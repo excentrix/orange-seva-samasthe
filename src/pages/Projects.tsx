@@ -1,72 +1,121 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { client, urlFor } from "@/lib/sanity";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+interface ProjectImage {
+  _id: string;
+  image: string;
+  alt: string;
+  caption: string;
+}
+
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  images: ProjectImage[];
+}
 
 const Projects: React.FC = () => {
-  const projects = [
-    {
-      title: "Don't Waste the Food",
-      description: "Collecting and distributing excess food to those in need.",
-      image: "/path/to/food-project-image.jpg",
-    },
-    {
-      title: "Medical Camps and Eye Treatment",
-      description: "Providing free medical check-ups and eye care services.",
-      image: "/path/to/medical-camp-image.jpg",
-    },
-    {
-      title: "Skill Development Programs",
-      description:
-        "Empowering individuals with vocational skills for better livelihoods.",
-      image: "/path/to/skill-development-image.jpg",
-    },
-    {
-      title: "Women Empowerment Initiatives",
-      description:
-        "Supporting women through education and entrepreneurship programs.",
-      image: "/path/to/women-empowerment-image.jpg",
-    },
-    {
-      title: "Environmental Awareness Campaigns",
-      description:
-        "Promoting environmental conservation and sustainable practices.",
-      image: "/path/to/environmental-campaign-image.jpg",
-    },
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const data = await client.fetch(`
+       *[_type == "project"]{
+          _id,
+          title,
+          description,
+          "images": images[]->{
+            _id,
+            "image": image.asset->url,
+            alt,
+            caption
+          }
+        }
+      `);
+      setProjects(data);
+    };
+    fetchProjects();
+  }, []);
+
+  console.log(projects);
 
   return (
-    <div className="bg-off-white py-16">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="bg-gray-100 py-16"
+    >
       <div className="container mx-auto px-4">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center mb-12"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-3xl font-bold text-center mb-10"
         >
           Our Projects
-        </motion.h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+        </motion.h2>
+        <div className="flex flex-col items-center gap-y-4">
+          {projects.map((project) => (
+            <Card
+              key={project._id}
+              className="flex flex-col items-center justify-center gap-y-5 shadow"
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-600">{project.description}</p>
-              </div>
-            </motion.div>
+              <CardHeader>
+                <CardTitle>
+                  <h2 className="text-2xl font-semibold mb-4">
+                    {project.title}
+                  </h2>
+                </CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <Carousel className="w-full max-w-4xl mx-auto">
+                  <CarouselContent>
+                    {project?.images?.map((image) => (
+                      <CarouselItem key={image._id}>
+                        <Card className="relative overflow-hidden">
+                          <CardContent className="p-0">
+                            <img
+                              src={image.image}
+                              alt={image.alt}
+                              className="w-full h-[450px] object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+                              <p className="text-white">{image.caption}</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+
+                <p className="m-4">{project.description}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

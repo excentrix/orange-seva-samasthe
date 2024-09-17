@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="bg-gradient-to-r from-orange-600 to-yellow-500 text-white p-6 mt-8">
       <div className="container mx-auto text-center">
         <p className="font-bold">
-          &copy; 2024 Orange Seva Samaste. All rights reserved.
+          &copy; 2024 Orange Seva Samasthe. All rights reserved.
         </p>
         <p className="mt-2">
           Contact:
@@ -13,11 +13,14 @@ const Footer: React.FC = () => {
             href="mailto:sevaorange@gmail.com"
             className="hover:underline ml-1"
           >
-            sevaorange@gmail.com
+            sevaorange@gmail.com&nbsp;
           </a>
-          | Phone:
+          |&nbsp;Phone:
           <a href="tel:9113902995" className="hover:underline ml-1">
-            9113902995, 6360814489
+            9113902995
+          </a>,
+          <a href="tel:6360814489" className="hover:underline ml-1">
+            6360814489
           </a>
         </p>
         <div className="mt-4">
