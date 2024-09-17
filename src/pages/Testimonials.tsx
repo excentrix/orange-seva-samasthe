@@ -74,11 +74,11 @@ const Testimonials: React.FC = () => {
                 <img
                   src={urlFor(testimonial.image.image)
                     .width(400)
-                    .height(200)
+                    .height(400)
                     .fit("crop")
                     .url()}
                   alt={testimonial.image.alt || testimonial.name}
-                  className="w-48 h-48 object-cover rounded-full mt-6"
+                  className="w-48 h-48 object-fill rounded-full mt-6"
                 />
               )}
               <div className="p-6">
