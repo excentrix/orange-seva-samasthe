@@ -114,8 +114,10 @@ const Home: React.FC = () => {
                       useEasing
                       enableScrollSpy
                       scrollSpyOnce
-                    />
-                    +
+                      prefix="+ "
+                    >
+                      {({ countUpRef }) => <span ref={countUpRef} />}
+                    </CountUp>
                   </h3>
                   <p className="text-white">{item.text}</p>
                 </div>

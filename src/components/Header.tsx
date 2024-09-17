@@ -72,11 +72,14 @@ const Header: React.FC = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link to="/">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Home
-                  </NavigationMenuLink>
-                </Link>
+                {/* <Link to="/"> */}
+                <NavigationMenuLink
+                  href="/"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Home
+                </NavigationMenuLink>
+                {/* </Link> */}
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>About</NavigationMenuTrigger>
@@ -95,32 +98,44 @@ const Header: React.FC = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/projects">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Projects
-                  </NavigationMenuLink>
-                </Link>
+                {/* <Link to="/projects"> */}
+                <NavigationMenuLink
+                  href="/projects"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Projects
+                </NavigationMenuLink>
+                {/* </Link> */}
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/gallery">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Gallery
-                  </NavigationMenuLink>
-                </Link>
+                {/* <Link to="/gallery"> */}
+                <NavigationMenuLink
+                  href="/gallery"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Gallery
+                </NavigationMenuLink>
+                {/* </Link> */}
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/testimonials">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Testimonials
-                  </NavigationMenuLink>
-                </Link>
+                {/* <Link to="/testimonials"> */}
+                <NavigationMenuLink
+                  href="/testimonials"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Testimonials
+                </NavigationMenuLink>
+                {/* </Link> */}
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/contact">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Contact
-                  </NavigationMenuLink>
-                </Link>
+                {/* <Link to="/contact"> */}
+                <NavigationMenuLink
+                  href="/contact"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Contact
+                </NavigationMenuLink>
+                {/* </Link> */}
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

@@ -47,8 +47,6 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
-  console.log(projects);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -72,10 +70,8 @@ const Projects: React.FC = () => {
               className="flex flex-col items-center justify-center gap-y-5 shadow"
             >
               <CardHeader>
-                <CardTitle>
-                  <h2 className="text-2xl font-semibold mb-4">
-                    {project.title}
-                  </h2>
+                <CardTitle className="text-2xl font-semibold mb-4">
+                  {project.title}
                 </CardTitle>
               </CardHeader>
 
