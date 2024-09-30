@@ -96,7 +96,7 @@ const Projects: React.FC = () => {
             />
           )}
         </AnimatePresence>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {active ? (
             <div className="fixed inset-0 grid max-w-full w-full place-items-center z-[100] backdrop-blur-sm backdrop-brightness-50">
               <motion.button
@@ -113,6 +113,10 @@ const Projects: React.FC = () => {
               <motion.div
                 layoutId={`card-${active._id}-${id}`}
                 ref={ref}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
                 className="w-11/12 rounded-lg max-w-[900px] h-[90vh] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
               >
                 <CardHeader>

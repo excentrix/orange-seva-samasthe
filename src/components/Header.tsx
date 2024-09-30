@@ -144,7 +144,11 @@ const Header: React.FC = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
-        <Button asChild variant="default" className="hidden: lg:flex bg-main font-semibold tracking-widest rounded-full px-10">
+        <Button
+          asChild
+          variant="default"
+          className="hidden lg:flex bg-main font-semibold tracking-widest rounded-full px-10"
+        >
           <Link to="/donate">Donate</Link>
         </Button>
 
