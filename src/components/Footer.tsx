@@ -2,10 +2,12 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-r from-main to-blue-accent text-white p-6 mt-8">
+    <footer className="block bg-main text-white p-6 sm:p-6 text-sm sm:text-base min-h-[200px]">
       <div className="container mx-auto text-center">
         <p className="font-bold">
-          &copy; 2024 Orange Seva Samsthe. All rights reserved.
+          &copy; 2024 Orange Seva Samsthe.
+          <br />
+          All rights reserved.
         </p>
         <p className="mt-2">
           Contact:
@@ -41,7 +43,10 @@ const Footer: React.FC = () => {
             className="mx-2 text-white hover:text-blue-500 transition duration-300"
             aria-label="Visit our Facebook page"
           >
-            <i className="fab fa-facebook fa-lg" aria-hidden="true"></i>
+            <i
+              className="fab fa-facebook fa-lg w-6 h-6 inline-block"
+              aria-hidden="true"
+            ></i>
             <span className="sr-only">Facebook</span>
           </a>
           <a
@@ -51,7 +56,10 @@ const Footer: React.FC = () => {
             className="mx-2 text-white hover:text-blue-400 transition duration-300"
             aria-label="Visit our X (Twitter) page"
           >
-            <i className="fab fa-x-twitter fa-lg" aria-hidden="true"></i>
+            <i
+              className="fab fa-x-twitter fa-lg w-6 h-6 inline-block"
+              aria-hidden="true"
+            ></i>
             <span className="sr-only">X (Twitter)</span>
           </a>
           <a
@@ -61,7 +69,10 @@ const Footer: React.FC = () => {
             className="mx-2 text-white hover:text-pink-500 transition duration-300"
             aria-label="Visit our Instagram page"
           >
-            <i className="fab fa-instagram fa-lg" aria-hidden="true"></i>
+            <i
+              className="fab fa-instagram fa-lg w-6 h-6 inline-block"
+              aria-hidden="true"
+            ></i>
             <span className="sr-only">Instagram</span>
           </a>
           <a
@@ -71,7 +82,10 @@ const Footer: React.FC = () => {
             className="mx-2 text-white hover:text-blue-700 transition duration-300"
             aria-label="Visit our LinkedIn page"
           >
-            <i className="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+            <i
+              className="fab fa-linkedin fa-lg w-6 h-6 inline-block"
+              aria-hidden="true"
+            ></i>
             <span className="sr-only">LinkedIn</span>
           </a>
         </div>

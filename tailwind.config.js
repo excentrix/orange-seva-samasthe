@@ -111,7 +111,7 @@ module.exports = {
         slideIn: "slideIn 0.5s ease-out",
       },
       backgroundImage: {
-        hero: "url(https://images.pexels.com/photos/933606/pexels-photo-933606.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1)",
+        hero: "url(https://images.pexels.com/photos/933606/pexels-photo-933606.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1&fm=webp)",
       },
       fontFamily: {
         hel: ["Helvetica", "Arial", "sans-serif"],
