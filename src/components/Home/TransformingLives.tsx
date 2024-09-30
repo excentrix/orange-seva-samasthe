@@ -11,32 +11,16 @@ import {
 interface TransformationCard {
   title: string;
   description: string;
-  imageUrl: string;
+  image: {
+    imageUrl: string;
+    caption: string;
+    alt: string;
+  };
 }
-
-const transformationCards: TransformationCard[] = [
-  {
-    title: "Health",
-    description:
-      "WE CARE has been paving the path for millions of disadvantaged people worldwide to have better lives for more than 10 years.",
-    imageUrl:
-      "https://cdn.sanity.io/images/5d677rbl/production/ddf0bbb2bf5da43882bece9f568d29ba38dea1f7-1024x1024.png",
-  },
-  {
-    title: "Education",
-    description:
-      "WE CARE has been paving the path for millions of disadvantaged people worldwide to have better lives for more than 10 years.",
-    imageUrl:
-      "https://cdn.sanity.io/images/5d677rbl/production/87e608cf14d47f63e2935808981b6a3c2164b47a-1024x1024.png",
-  },
-  {
-    title: "Food",
-    description:
-      "WE CARE has been paving the path for millions of disadvantaged people worldwide to have better lives for more than 10 years.",
-    imageUrl:
-      "https://cdn.sanity.io/images/5d677rbl/production/d6f140e72b745f6aeb45bcbccade114a1d7c43cf-1024x1024.png",
-  },
-];
+interface TransformingLivesProps {
+  title: string;
+  cards: TransformationCard[];
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,8 +42,10 @@ const itemVariants = {
     },
   },
 };
-
-const TransformingLives: React.FC = () => {
+const TransformingLives: React.FC<TransformingLivesProps> = ({
+  title,
+  cards,
+}) => {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16 bg-gray-50">
       <motion.div
@@ -73,18 +59,18 @@ const TransformingLives: React.FC = () => {
           className="text-3xl md:text-4xl font-bold text-center mb-12"
           variants={itemVariants}
         >
-          How we're transforming lives
+          {title}
         </motion.h2>
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
         >
-          {transformationCards.map((card, index) => (
+          {cards.map((card, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="overflow-hidden border-none shadow-none">
                 <img
-                  src={card.imageUrl}
-                  alt={card.title}
+                  src={card.image.imageUrl}
+                  alt={card.image.alt}
                   className="w-full h-60 object-cover rounded-xl"
                 />
                 <CardHeader>

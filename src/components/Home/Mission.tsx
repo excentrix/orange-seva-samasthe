@@ -2,7 +2,21 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-const MissionSection: React.FC = () => {
+interface MissionProps {
+  title: string;
+  description: string;
+  images: {
+    imageUrl: string;
+    caption: string;
+    alt: string;
+  }[];
+}
+
+const MissionSection: React.FC<MissionProps> = ({
+  title,
+  description,
+  images,
+}) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,34 +48,19 @@ const MissionSection: React.FC = () => {
         variants={containerVariants}
       >
         <div className="lg:w-3/5 grid grid-cols-2 gap-4">
-          <motion.img
-            src="https://img.freepik.com/free-photo/view-kids-practicing-health-wellness-activity_23-2151402079.jpg?t=st=1727599388~exp=1727602988~hmac=9bf487d0b7b2710397be977fca7143c9a258ab7da546a626c2713b3c79b1ff9b&w=1380"
-            alt="Happy children"
-            className="w-full h-full object-cover rounded-lg row-span-2 grayscale"
-            variants={itemVariants}
-          />
-          <motion.img
-            src="https://cdn.sanity.io/images/5d677rbl/production/ddf0bbb2bf5da43882bece9f568d29ba38dea1f7-1024x1024.png"
-            alt="Aid workers"
-            className="w-full h-full object-cover rounded-lg grayscale"
-            variants={itemVariants}
-          />
-          <motion.img
-            src="https://cdn.sanity.io/images/5d677rbl/production/d6f140e72b745f6aeb45bcbccade114a1d7c43cf-1024x1024.png"
-            alt="Child in need"
-            className="w-full h-full object-cover rounded-lg grayscale"
-            variants={itemVariants}
-          />
+          {images.map((image, index) => (
+            <motion.img
+              key={index}
+              src={image.imageUrl}
+              alt={image.alt}
+              className="w-full h-full object-cover rounded-lg grayscale first:row-span-2"
+              variants={itemVariants}
+            />
+          ))}
         </div>
         <motion.div className="lg:w-2/5" variants={itemVariants}>
-          <h2 className="text-4xl md:text-4xl font-bold mb-4">
-            We are on a mission to transform lives.
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Our goal is to start long-lasting change by becoming a light of hope
-            and compassion. We truly think that even the tiniest deed of
-            kindness may set off a chain reaction of good change.
-          </p>
+          <h2 className="text-4xl md:text-4xl font-bold mb-4">{title}</h2>
+          <p className="text-gray-600 mb-6">{description}</p>
           <Button
             variant="outline"
             className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"

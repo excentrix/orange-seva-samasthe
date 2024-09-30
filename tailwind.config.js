@@ -17,7 +17,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        "orange-primary": "#FF6B35",
+        main: "#0fb9b1",
+        primary: "#FF6B35",
         "orange-secondary": "#F7C59F",
         "blue-accent": "#2EC4B6",
         "off-white": "#EFEFEF",

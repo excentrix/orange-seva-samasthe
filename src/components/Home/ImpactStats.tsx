@@ -5,34 +5,24 @@ import { CreditCard, Heart, Megaphone } from "lucide-react";
 import CountUp from "react-countup";
 
 interface ImpactStat {
-  icon: React.ReactNode;
+  icon: string;
   value: number;
   prefix?: string;
   label: string;
 }
 
-const impactStats: ImpactStat[] = [
-  {
-    icon: <CreditCard className="w-16 h-16 text-orange-500" />,
-    value: 200,
-    prefix: "M+ ",
-    label: "Donations Raised",
-  },
-  {
-    icon: <Heart className="w-16 h-16 text-orange-500" />,
-    value: 50,
-    prefix: "K+ ",
-    label: "Lives Impacted",
-  },
-  {
-    icon: <Megaphone className="w-16 h-16 text-orange-500" />,
-    value: 120,
-    prefix: "+ ",
-    label: "Active Campaigns",
-  },
-];
+interface ImpactStatsProps {
+  title: string;
+  stats: ImpactStat[];
+}
 
-const ImpactStats: React.FC = () => {
+const iconMap: { [key: string]: React.ReactNode } = {
+  creditCard: <CreditCard className="w-16 h-16 text-orange-500" />,
+  heart: <Heart className="w-16 h-16 text-orange-500" />,
+  megaphone: <Megaphone className="w-16 h-16 text-orange-500" />,
+};
+
+const ImpactStats: React.FC<ImpactStatsProps> = ({ title, stats }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -67,14 +57,14 @@ const ImpactStats: React.FC = () => {
           className="text-4xl md:text-4xl font-bold text-white text-center mb-12"
           variants={itemVariants}
         >
-          Our Impact
+          {title}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {impactStats.map((stat, index) => (
+          {stats.map((stat, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="bg-white rounded-lg shadow-lg">
                 <CardContent className="flex items-center p-10 justify-evenly">
-                  {stat.icon}
+                  {iconMap[stat.icon]}
                   <div className="flex flex-col h-full">
                     <p className="text-4xl font-bold">
                       <CountUp
@@ -84,14 +74,11 @@ const ImpactStats: React.FC = () => {
                         useEasing
                         enableScrollSpy
                         scrollSpyOnce
-                        //   prefix=
                         suffix={stat.prefix}
                       >
                         {({ countUpRef }) => <span ref={countUpRef} />}
                       </CountUp>
                     </p>
-                    {/* <p className="text-4xl font-bold mt-4">{stat.value}</p>
-                    <p className="text-gray-600 mt-2">{stat.label}</p> */}
                     <p className="text-gray-600">{stat.label}</p>
                   </div>
                 </CardContent>
