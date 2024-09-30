@@ -72,6 +72,7 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
                 <img
                   src={
                     urlFor(card.image.imageUrl)
+                      .width(800)
                       .format("webp")
                       .quality(80)
                       .url() || ""

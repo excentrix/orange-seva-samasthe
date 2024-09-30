@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
+import { urlFor } from "@/lib/sanity";
 
 interface HeroProps {
   title: string;
@@ -22,7 +23,11 @@ const HeroSection: React.FC<HeroProps> = ({
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${backgroundImage.imageUrl})`,
+          backgroundImage: `url(${urlFor(backgroundImage.imageUrl)
+            .width(1920)
+            .format("webp")
+            .quality(80)
+            .url()})`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>

@@ -84,7 +84,7 @@ const FeaturedTestimonials: React.FC = () => {
         <div className="w-full md:w-1/2">
           <div className="mb-4">
             <img
-              src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2F9c1d08050eb7db8d4704e1dad847a643.cdn.bubble.io%2Ff1700579357609x199102519413177470%2Ficon-park_quote.png?w=120&h=120&auto=compress&dpr=0.5&fit=max"
+              src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2F9c1d08050eb7db8d4704e1dad847a643.cdn.bubble.io%2Ff1700579357609x199102519413177470%2Ficon-park_quote.png?w=120&h=120&auto=compress&dpr=0.5&fit=max&fm=webp"
               alt="quote"
               width={120}
               height={120}
