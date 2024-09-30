@@ -36,7 +36,7 @@ const App: React.FC = () => {
     <HelmetProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Router>
-          <div className="flex flex-col min-h-screen bg-gray-50">
+          <div className="flex flex-col min-h-screen bg-gray-50 font-hel">
             <Header />
 
             <main className="flex-grow">

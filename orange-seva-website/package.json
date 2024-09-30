@@ -15,7 +15,6 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/core": "^2.36.2",
     "@sanity/icons": "^2.11.0",
     "@sanity/ui": "^2.0.0",
     "@sanity/vision": "^3.57.3",
