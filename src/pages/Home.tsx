@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import FeaturedTestimonials from "@/components/Home/FeaturedTestimonials";
 import TransformingLives from "@/components/Home/TransformingLives";
 import MissionSection from "@/components/Home/Mission";
