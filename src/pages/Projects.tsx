@@ -23,6 +23,26 @@ interface Project {
   images: Projectimg[];
 }
 
+const Backdrop = ({ isActive }: { isActive: boolean }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: isActive ? 1 : 0 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.2 }}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      backdropFilter: "blur(4px) brightness(50%)",
+      zIndex: 40,
+      pointerEvents: "none",
+    }}
+  />
+);
+
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [active, setActive] = useState<Project | null>(null);
@@ -48,8 +68,6 @@ const Projects: React.FC = () => {
     };
     fetchProjects();
   }, []);
-
-  console.log(projects);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -86,26 +104,21 @@ const Projects: React.FC = () => {
         >
           Our Projects
         </motion.h2>
+
         <AnimatePresence>
-          {active && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 h-full w-full z-10"
-            />
-          )}
+          <Backdrop isActive={!!active} />
         </AnimatePresence>
+
         <AnimatePresence mode="wait">
-          {active ? (
-            <div className="fixed inset-0 grid max-w-full w-full place-items-center z-[100] backdrop-blur-sm backdrop-brightness-50">
+          {active && (
+            <div className="fixed inset-0 grid max-w-full w-full place-items-center z-[100]">
               <motion.button
                 key={`button-${active.title}-${id}`}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                className="flex absolute top-6 right-6 lg:hidden items-center  justify-center bg-red-500 rounded-full h-8 w-8"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15 }}
+                className="flex absolute top-6 right-6 lg:hidden items-center justify-center bg-red-500 rounded-full h-8 w-8 z-[110]"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -153,8 +166,6 @@ const Projects: React.FC = () => {
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      {/* <CarouselPrevious />
-                      <CarouselNext /> */}
                     </Carousel>
 
                     <p className="m-4 flex-grow pb-10">{active.description}</p>
@@ -162,7 +173,7 @@ const Projects: React.FC = () => {
                 </CardContent>
               </motion.div>
             </div>
-          ) : null}
+          )}
         </AnimatePresence>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
@@ -170,7 +181,9 @@ const Projects: React.FC = () => {
               layoutId={`card-${project._id}-${id}`}
               key={project._id}
               onClick={() => setActive(project)}
-              className=" bg-white dark:bg-neutral-800 rounded-xl shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white dark:bg-neutral-800 rounded-xl shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
             >
               <motion.div
                 layoutId={`img-${project._id}-${id}`}
@@ -211,7 +224,8 @@ const CloseIcon = () => {
     <motion.svg
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.05 } }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
       xmlns="http://www.w3.org/2000/svg"
       width="30"
       height="30"
