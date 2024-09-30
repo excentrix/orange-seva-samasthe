@@ -54,7 +54,7 @@ const MissionSection: React.FC<MissionProps> = ({
               key={index}
               src={
                 urlFor(image.imageUrl)
-                  .width(800)
+                  .height(600)
                   .format("webp")
                   .quality(80)
                   .url() || ""

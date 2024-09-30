@@ -38,7 +38,7 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           <img
             src={
               urlFor(image.imageUrl)
-                .width(800)
+                .width(1120)
                 .format("webp")
                 .quality(80)
                 .url() || ""
