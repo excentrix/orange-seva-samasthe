@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { urlFor } from "@/lib/sanity";
 
 interface CommunityImpactProps {
   title: string;
@@ -35,7 +36,13 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <img
-            src={image.imageUrl}
+            src={
+              urlFor(image.imageUrl)
+                .width(800)
+                .format("webp")
+                .quality(80)
+                .url() || ""
+            }
             alt={image.alt}
             loading="lazy"
             className="w-full h-80 object-cover"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useId, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import {
   Carousel,
   CarouselContent,
@@ -152,7 +152,14 @@ const Projects: React.FC = () => {
                             <Card className="relative overflow-hidden">
                               <CardContent className="p-0">
                                 <img
-                                  src={img.imageUrl}
+                                  src={
+                                    urlFor(img.imageUrl)
+                                      .width(800)
+                                      .height(450)
+                                      .format("webp")
+                                      .quality(80)
+                                      .url() || ""
+                                  }
                                   loading="lazy"
                                   alt={img.alt}
                                   width={800}
@@ -191,7 +198,14 @@ const Projects: React.FC = () => {
                 className="w-full rounded-t-lg h-auto"
               >
                 <img
-                  src={project.images[0].imageUrl || "/placeholder.jpg"}
+                  src={
+                    urlFor(project.images[0].imageUrl)
+                      .width(400)
+                      .height(300)
+                      .format("webp")
+                      .quality(80)
+                      .url() || "/placeholder.jpg"
+                  }
                   loading="lazy"
                   alt={project.images[0]?.alt || project.title}
                   width={400}

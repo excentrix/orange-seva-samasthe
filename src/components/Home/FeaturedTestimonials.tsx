@@ -73,6 +73,8 @@ const FeaturedTestimonials: React.FC = () => {
             src={urlFor(currentTestimonial.image.image)
               .width(500)
               .height(600)
+              .format("webp")
+              .quality(80)
               .fit("crop")
               .url()}
             alt={currentTestimonial.name}

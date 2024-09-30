@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { urlFor } from "@/lib/sanity";
 
 interface MissionProps {
   title: string;
@@ -51,7 +52,13 @@ const MissionSection: React.FC<MissionProps> = ({
           {images.map((image, index) => (
             <motion.img
               key={index}
-              src={image.imageUrl}
+              src={
+                urlFor(image.imageUrl)
+                  // .width(800)
+                  .format("webp")
+                  .quality(80)
+                  .url() || ""
+              }
               loading="lazy"
               alt={image.alt}
               className="w-full h-full object-cover rounded-lg grayscale first:row-span-2"

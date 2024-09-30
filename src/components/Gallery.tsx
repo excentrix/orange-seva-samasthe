@@ -51,7 +51,8 @@ const Gallery: React.FC = () => {
                 src={urlFor(image.image)
                   .width(400)
                   .height(300)
-
+                  .format("webp")
+                  .quality(80)
                   .fit("crop")
                   .url()}
                 alt={image.alt || "Gallery image"}

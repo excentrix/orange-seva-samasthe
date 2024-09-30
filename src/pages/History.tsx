@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -58,7 +58,14 @@ export const History = () => {
         {item.images.map((image, index) => (
           <figure key={index} className="relative">
             <img
-              src={image.imageUrl}
+              src={
+                urlFor(image.imageUrl)
+                  .width(500)
+                  .height(500)
+                  .format("webp")
+                  .quality(80)
+                  .url() || ""
+              }
               loading="lazy"
               alt={image.alt}
               width={500}

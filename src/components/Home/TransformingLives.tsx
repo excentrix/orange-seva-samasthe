@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { urlFor } from "@/lib/sanity";
 
 interface TransformationCard {
   title: string;
@@ -69,7 +70,12 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
             <motion.div key={index} variants={itemVariants}>
               <Card className="overflow-hidden border-none shadow-none">
                 <img
-                  src={card.image.imageUrl}
+                  src={
+                    urlFor(card.image.imageUrl)
+                      .format("webp")
+                      .quality(80)
+                      .url() || ""
+                  }
                   loading="lazy"
                   alt={card.image.alt}
                   className="w-full h-60 object-cover rounded-xl"
