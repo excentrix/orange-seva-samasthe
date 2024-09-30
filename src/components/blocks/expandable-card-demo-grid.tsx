@@ -74,6 +74,7 @@ export default function ExpandableCardDemo() {
                   // priority
                   width={200}
                   height={200}
+                  loading="lazy"
                   src={active.src}
                   alt={active.title}
                   className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
@@ -141,6 +142,7 @@ export default function ExpandableCardDemo() {
                   width={100}
                   height={100}
                   src={card.src}
+                  loading="lazy"
                   alt={card.title}
                   className="h-60 w-full  rounded-lg object-cover object-top"
                 />

@@ -70,6 +70,7 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
               <Card className="overflow-hidden border-none shadow-none">
                 <img
                   src={card.image.imageUrl}
+                  loading="lazy"
                   alt={card.image.alt}
                   className="w-full h-60 object-cover rounded-xl"
                 />

@@ -78,6 +78,7 @@ const Testimonials: React.FC = () => {
                     .fit("crop")
                     .url()}
                   alt={testimonial.image.alt || testimonial.name}
+                  loading="lazy"
                   className="w-48 h-48 object-fill rounded-full mt-6"
                 />
               )}

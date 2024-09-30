@@ -69,6 +69,7 @@ const FeaturedTestimonials: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
+            loading="lazy"
             src={urlFor(currentTestimonial.image.image)
               .width(500)
               .height(600)
@@ -119,6 +120,7 @@ const FeaturedTestimonials: React.FC = () => {
       <div className="flex justify-center items-center mt-8 gap-4">
         <button
           onClick={handlePrev}
+          aria-label="Previous testimonial"
           className="bg-main text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
         >
           <ChevronLeft size={24} />
@@ -128,6 +130,7 @@ const FeaturedTestimonials: React.FC = () => {
         </span>
         <button
           onClick={handleNext}
+          aria-label="Next testimonial"
           className="bg-main text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
         >
           <ChevronRight size={24} />

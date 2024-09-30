@@ -153,6 +153,7 @@ const Projects: React.FC = () => {
                               <CardContent className="p-0">
                                 <img
                                   src={img.imageUrl}
+                                  loading="lazy"
                                   alt={img.alt}
                                   width={800}
                                   height={450}
@@ -191,6 +192,7 @@ const Projects: React.FC = () => {
               >
                 <img
                   src={project.images[0].imageUrl || "/placeholder.jpg"}
+                  loading="lazy"
                   alt={project.images[0]?.alt || project.title}
                   width={400}
                   height={300}

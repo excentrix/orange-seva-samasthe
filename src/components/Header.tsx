@@ -48,11 +48,11 @@ const Header: React.FC = () => {
       <div className="container mx-1 p-4 flex flex-wrap justify-between items-center w-full">
         <Link
           to="/"
-          className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-main"
+          className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-primary"
         >
           <img
             src="/media/logo.jpg"
-            alt="Orange Seva Samsthe"
+            alt="Orange Seva Samsthe Logo"
             className="w-8 h-8 sm:w-12 sm:h-12"
           />
           <span className="hidden sm:inline">Orange Seva Samsthe</span>

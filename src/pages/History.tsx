@@ -59,6 +59,7 @@ export const History = () => {
           <figure key={index} className="relative">
             <img
               src={image.imageUrl}
+              loading="lazy"
               alt={image.alt}
               width={500}
               height={500}

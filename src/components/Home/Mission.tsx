@@ -52,6 +52,7 @@ const MissionSection: React.FC<MissionProps> = ({
             <motion.img
               key={index}
               src={image.imageUrl}
+              loading="lazy"
               alt={image.alt}
               className="w-full h-full object-cover rounded-lg grayscale first:row-span-2"
               variants={itemVariants}

@@ -51,9 +51,11 @@ const Gallery: React.FC = () => {
                 src={urlFor(image.image)
                   .width(400)
                   .height(300)
+
                   .fit("crop")
                   .url()}
                 alt={image.alt || "Gallery image"}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
               {image.caption && (

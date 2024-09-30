@@ -37,6 +37,7 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           <img
             src={image.imageUrl}
             alt={image.alt}
+            loading="lazy"
             className="w-full h-80 object-cover"
           />
         </motion.div>
