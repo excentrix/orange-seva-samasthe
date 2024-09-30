@@ -52,7 +52,7 @@ const NotFound: React.FC = () => {
             <div className="space-y-4">
               <Button
                 onClick={() => navigate("/")}
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-main hover:bg-orange-600 text-white"
               >
                 Return to Home
               </Button>

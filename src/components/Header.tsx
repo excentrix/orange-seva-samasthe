@@ -48,7 +48,7 @@ const Header: React.FC = () => {
       <div className="container mx-1 p-4 flex flex-wrap justify-between items-center w-full">
         <Link
           to="/"
-          className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-orange-500"
+          className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-main"
         >
           <img
             src="/media/logo.jpg"
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
 
         {/* Mobile menu button */}
         <button
-          className="lg:hidden text-orange-500"
+          className="lg:hidden text-main"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
-        <Button asChild variant="default" className="hidden: lg:flex">
+        <Button asChild variant="default" className="hidden: lg:flex bg-main font-semibold tracking-widest rounded-full px-10">
           <Link to="/donate">Donate</Link>
         </Button>
 
@@ -156,13 +156,13 @@ const Header: React.FC = () => {
         >
           <Link
             to="/"
-            className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+            className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Home
           </Link>
           <div className="relative group">
-            <button className="w-full text-left py-2 px-4 text-orange-500 hover:bg-orange-100 flex justify-between items-center">
+            <button className="w-full text-left py-2 px-4 text-main hover:bg-orange-100 flex justify-between items-center">
               About
               <span className="text-xs">▼</span>
             </button>
@@ -171,7 +171,7 @@ const Header: React.FC = () => {
                 <Link
                   key={item.title}
                   to={item.href}
-                  className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+                  className="block py-2 px-4 text-main hover:bg-orange-100"
                   onClick={toggleMenu}
                 >
                   {item.title}
@@ -181,35 +181,35 @@ const Header: React.FC = () => {
           </div>
           <Link
             to="/projects"
-            className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+            className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Projects
           </Link>
           <Link
             to="/gallery"
-            className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+            className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Gallery
           </Link>
           <Link
             to="/testimonials"
-            className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+            className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Testimonials
           </Link>
           <Link
             to="/contact"
-            className="block py-2 px-4 text-orange-500 hover:bg-orange-100"
+            className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Contact
           </Link>
           <Link
             to="/donate"
-            className="block py-2 px-4 bg-orange-500 text-white hover:bg-orange-600"
+            className="block py-2 px-4 bg-main text-white hover:bg-orange-600"
             onClick={toggleMenu}
           >
             Donate

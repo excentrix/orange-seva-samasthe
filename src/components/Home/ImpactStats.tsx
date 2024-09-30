@@ -17,9 +17,9 @@ interface ImpactStatsProps {
 }
 
 const iconMap: { [key: string]: React.ReactNode } = {
-  creditCard: <CreditCard className="w-16 h-16 text-orange-500" />,
-  heart: <Heart className="w-16 h-16 text-orange-500" />,
-  megaphone: <Megaphone className="w-16 h-16 text-orange-500" />,
+  creditCard: <CreditCard className="w-16 h-16 text-main" />,
+  heart: <Heart className="w-16 h-16 text-main" />,
+  megaphone: <Megaphone className="w-16 h-16 text-main" />,
 };
 
 const ImpactStats: React.FC<ImpactStatsProps> = ({ title, stats }) => {
@@ -45,7 +45,7 @@ const ImpactStats: React.FC<ImpactStatsProps> = ({ title, stats }) => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 bg-orange-500 relative overflow-hidden">
+    <section className="py-20 px-4 md:px-8 lg:px-16 bg-main relative overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto relative z-10"
         initial="hidden"

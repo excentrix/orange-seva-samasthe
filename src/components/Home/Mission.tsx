@@ -63,7 +63,7 @@ const MissionSection: React.FC<MissionProps> = ({
           <p className="text-gray-600 mb-6">{description}</p>
           <Button
             variant="outline"
-            className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+            className="border-main text-main hover:bg-main hover:text-white"
           >
             Learn More
           </Button>

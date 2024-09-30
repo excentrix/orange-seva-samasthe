@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Timeline } from "@/components/ui/timeline";
+import { client } from "@/lib/sanity";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -6,56 +9,88 @@ const pageVariants = {
   exit: { opacity: 0, y: -50 },
 };
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+interface CustomImage {
+  imageUrl: string;
+  alt: string;
+  caption: string;
+}
 
-export const History = () => (
-  <motion.div
-    initial="initial"
-    animate="animate"
-    exit="exit"
-    variants={pageVariants}
-    transition={{ duration: 0.5 }}
-    className="space-y-8 p-8"
-  >
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold">Our History</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ul className="space-y-2">
-          <li>
-            <strong>2015:</strong> The birth of an idea
-          </li>
-          <li>
-            <strong>2016:</strong> Official establishment
-          </li>
-          <li>
-            <strong>2017-2018:</strong> Expanding horizons
-          </li>
-          <li>
-            <strong>2019:</strong> Growing impact
-          </li>
-          <li>
-            <strong>2020:</strong> Responding to the pandemic
-          </li>
-          <li>
-            <strong>2021:</strong> New initiatives
-          </li>
-          <li>
-            <strong>2022:</strong> Strengthening foundations
-          </li>
-          <li>
-            <strong>2023:</strong> Milestone achievements
-          </li>
-          <li>
-            <strong>2024:</strong> Looking to the future
-          </li>
-        </ul>
-        <Button className="mt-4">Explore Our Journey</Button>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
+interface TimelineItem {
+  _id: string;
+  title: string;
+  content: string;
+  images: CustomImage[];
+}
+
+export const History = () => {
+  const [timelineData, setTimelineData] = useState<TimelineItem[]>([]);
+
+  useEffect(() => {
+    const fetchTimelineData = async () => {
+      const query = `*[_type == "timeline"] | order(order asc) {
+        _id,
+        title,
+        content,
+        "images": images[]->{
+        "imageUrl": image.asset->url,
+        alt,
+        caption
+      }
+      }`;
+
+      try {
+        const result = await client.fetch(query);
+        setTimelineData(result);
+      } catch (error) {
+        console.error("Error fetching timeline data:", error);
+      }
+    };
+
+    fetchTimelineData();
+  }, []);
+
+  const renderContent = (item: TimelineItem) => (
+    <div>
+      <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-base font-normal mb-8">
+        {item.content}
+      </p>
+      <div className="grid grid-cols-2 gap-4">
+        {item.images.map((image, index) => (
+          <figure key={index} className="relative">
+            <img
+              src={image.imageUrl}
+              alt={image.alt}
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+            {image.caption && (
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
+                {image.caption}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+
+  const formattedData = timelineData.map((item) => ({
+    title: item.title,
+    content: renderContent(item),
+  }));
+
+  return (
+    <motion.div
+      className="w-full"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+    >
+      <Timeline data={formattedData} />
+    </motion.div>
+  );
+};
 
 export default History;

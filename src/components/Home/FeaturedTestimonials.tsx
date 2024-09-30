@@ -100,7 +100,7 @@ const FeaturedTestimonials: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-bold text-xl text-orange-500"
+            className="font-bold text-xl text-main"
           >
             {currentTestimonial.name}
           </motion.p>
@@ -119,7 +119,7 @@ const FeaturedTestimonials: React.FC = () => {
       <div className="flex justify-center items-center mt-8 gap-4">
         <button
           onClick={handlePrev}
-          className="bg-orange-500 text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
+          className="bg-main text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
         >
           <ChevronLeft size={24} />
         </button>
@@ -128,7 +128,7 @@ const FeaturedTestimonials: React.FC = () => {
         </span>
         <button
           onClick={handleNext}
-          className="bg-orange-500 text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
+          className="bg-main text-white rounded-full p-2 hover:bg-orange-600 transition-colors duration-200"
         >
           <ChevronRight size={24} />
         </button>

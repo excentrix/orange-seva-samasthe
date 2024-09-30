@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-r from-orange-600 to-yellow-500 text-white p-6 mt-8">
+    <footer className="bg-gradient-to-r from-main to-blue-accent text-white p-6 mt-8">
       <div className="container mx-auto text-center">
         <p className="font-bold">
           &copy; 2024 Orange Seva Samsthe. All rights reserved.

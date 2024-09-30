@@ -40,7 +40,7 @@ const HeroSection: React.FC<HeroProps> = ({
               {title}
             </h1>
             <p className="text-xl text-white mb-8">{subtitle}</p>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-3">
+            <Button className="bg-main hover:bg-orange-600 text-white text-lg px-8 py-3">
               {ctaText}
             </Button>
           </motion.div>

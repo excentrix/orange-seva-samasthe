@@ -16,7 +16,7 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
 }) => {
   return (
     <section className="py-16 relative">
-      <div className="absolute top-0 left-0 right-0 h-4/6 bg-orange-500"></div>
+      <div className="absolute top-0 left-0 right-0 h-4/6 bg-main"></div>
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         <motion.h2
