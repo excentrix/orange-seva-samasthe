@@ -51,8 +51,10 @@ const Header: React.FC = () => {
           className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-primary"
         >
           <img
-            src="/media/logo.jpg"
+            src="https://cdn.sanity.io/images/5d677rbl/production/a75708d1beaaac2f2384082d358f440896c3906a-715x710.png?fm=webp"
             alt="Orange Seva Samsthe Logo"
+            width={32}
+            height={32}
             className="w-8 h-8 sm:w-12 sm:h-12"
           />
           <span className="hidden sm:inline">Orange Seva Samsthe</span>

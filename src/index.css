@@ -2,16 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.theLine {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawLine 5s ease forwards;
-}
-
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
+.contain-layout {
+  contain: layout;
 }
 
 @layer base {
