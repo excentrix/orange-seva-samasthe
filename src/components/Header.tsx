@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react"; // Make sure to install lucide-react
+import { urlFor } from "@/lib/sanity";
 
 const aboutLinks: { title: string; href: string; description: string }[] = [
   {
@@ -51,7 +52,16 @@ const Header: React.FC = () => {
           className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-primary"
         >
           <img
-            src="https://cdn.sanity.io/images/5d677rbl/production/a75708d1beaaac2f2384082d358f440896c3906a-715x710.png?fm=webp"
+            src={
+              urlFor(
+                "https://cdn.sanity.io/images/5d677rbl/production/a75708d1beaaac2f2384082d358f440896c3906a-715x710.png"
+              )
+                .width(320)
+                .height(320)
+                .format("webp")
+                .quality(100)
+                .url() || ""
+            }
             alt="Orange Seva Samsthe Logo"
             width={32}
             height={32}
