@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { urlFor } from "@/lib/sanity";
+import { Link } from "react-router-dom";
 
 interface HeroProps {
   title: string;
@@ -46,7 +47,7 @@ const HeroSection: React.FC<HeroProps> = ({
             </h1>
             <p className="text-xl text-white mb-8">{subtitle}</p>
             <Button className="bg-main hover:bg-orange-600 text-white font-semibold tracking-wide text-lg px-8 py-3">
-              {ctaText}
+            <Link to="/Donate">{ctaText}</Link>
             </Button>
           </motion.div>
         </div>

@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { client, urlFor } from "@/lib/sanity";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+
 
 interface Image {
   _id: string;
@@ -57,11 +60,23 @@ const FeaturedTestimonials: React.FC = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-16 px-4 md:px-8 max-w-6xl mx-auto">
+    
+    <section className="py-16 px-4 md:px-8 max-w-4xl mx-auto relative">
+
+      {/* py-16 px-4 md:px-8 max-w-6xl mx-auto */}
+     
+
+
+
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
         Impact Stories
       </h2>
-
+      <Button variant="outline"
+        className="absolute right-8 border-main text-main hover:bg-main hover:text-white z-10"
+        aria-label="Additional action"
+      >
+        <Link to="/Testimonials">Learn More</Link>
+      </Button>
       <div className="flex flex-col md:flex-row items-center gap-20">
         <div className="w-full md:w-1/2">
           <motion.img

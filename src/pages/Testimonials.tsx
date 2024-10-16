@@ -73,15 +73,15 @@ const Testimonials: React.FC = () => {
               {testimonial.image && (
                 <img
                   src={urlFor(testimonial.image.image)
-                    .width(400)
-                    .height(400)
+                    .width(500)
+                    .height(500)
                     .format("webp")
                     .quality(80)
                     .fit("crop")
                     .url()}
                   alt={testimonial.image.alt || testimonial.name}
                   loading="lazy"
-                  className="w-48 h-48 object-fill rounded-full mt-6"
+                  className="w-48 h-48 object-fill rounded-lg mt-6"
                 />
               )}
               <div className="p-6">

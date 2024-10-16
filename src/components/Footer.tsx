@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
         <p className="font-bold text-xs sm:text-sm md:text-base">
           &copy; 2024 Orange Seva Samsthe. All rights reserved.
         </p>
-        <p className="mt-2 text-xs sm:text-sm md:text-base">
+        <p className="mt-2 text-sm sm:text-base md:text-lg font-medium">
           Contact:
           <a
             href="mailto:sevaorange@gmail.com"
