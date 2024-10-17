@@ -87,13 +87,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/"> */}
                 <NavigationMenuLink
                   href="/"
-<<<<<<< HEAD
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`} style={{fontSize:'17px'}}
-=======
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`} style={{fontSize:'17px'}}
-
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   Home
                 </NavigationMenuLink>
@@ -101,13 +95,9 @@ const Header: React.FC = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger
-<<<<<<< HEAD
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking`}
-=======
 
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-sm`} style={{fontSize:'17px'}}
 
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   About
                 </NavigationMenuTrigger>
@@ -129,13 +119,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/projects"> */}
                 <NavigationMenuLink
                   href="/projects"
-<<<<<<< HEAD
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking`}
-=======
 
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
 
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   Projects
                 </NavigationMenuLink>
@@ -145,13 +131,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/gallery"> */}
                 <NavigationMenuLink
                   href="/gallery"
-<<<<<<< HEAD
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking`}
-=======
 
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
 
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   Gallery
                 </NavigationMenuLink>
@@ -161,13 +143,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/testimonials"> */}
                 <NavigationMenuLink
                   href="/testimonials"
-<<<<<<< HEAD
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking`}
-=======
 
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
 
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   Testimonials
                 </NavigationMenuLink>
@@ -177,13 +155,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/contact"> */}
                 <NavigationMenuLink
                   href="/contact"
-<<<<<<< HEAD
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking`}
-=======
 
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
 
->>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
                 >
                   Contact
                 </NavigationMenuLink>
