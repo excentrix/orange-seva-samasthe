@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { urlFor } from "@/lib/sanity";
+import { Link } from "react-router-dom";
 
 interface MissionProps {
   title: string;
@@ -73,7 +74,8 @@ const MissionSection: React.FC<MissionProps> = ({
             variant="outline"
             className="border-main text-main hover:bg-main hover:text-white"
           >
-            Learn More
+            <Link to="/Mission">Learn More</Link>
+            
           </Button>
         </motion.div>
       </motion.div>
