@@ -49,7 +49,7 @@ importers:
         version: 0.441.0(react@18.3.1)
       orange-seva:
         specifier: 'file:'
-        version: file:(@emotion/is-prop-valid@1.2.2)(@types/react-dom@18.3.0)(@types/react@18.3.6)
+        version: file:(@emotion/is-prop-valid@1.2.2)(@types/node@22.5.5)(@types/react-dom@18.3.0)(@types/react@18.3.6)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -5773,7 +5773,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@portabletext/editor@1.1.4(@sanity/block-tools@3.61.0)(@sanity/schema@3.61.0)(@sanity/types@3.61.0(debug@4.3.7))(@sanity/util@3.61.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@portabletext/editor@1.1.4(@sanity/block-tools@3.61.0)(@sanity/schema@3.61.0)(@sanity/types@3.61.0)(@sanity/util@3.61.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@portabletext/patches': 1.1.0
       '@sanity/block-tools': 3.61.0(debug@4.3.7)
@@ -6153,7 +6153,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sanity/insert-menu@1.0.9(@sanity/types@3.61.0(debug@4.3.7))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@sanity/insert-menu@1.0.9(@sanity/types@3.61.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@sanity/icons': 3.4.0(react@18.3.1)
       '@sanity/types': 3.61.0(debug@4.3.7)
@@ -8209,7 +8209,7 @@ snapshots:
       strip-ansi: 7.1.0
       wcwidth: 1.0.1
 
-  orange-seva@file:(@emotion/is-prop-valid@1.2.2)(@types/react-dom@18.3.0)(@types/react@18.3.6):
+  orange-seva@file:(@emotion/is-prop-valid@1.2.2)(@types/node@22.5.5)(@types/react-dom@18.3.0)(@types/react@18.3.6)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@radix-ui/react-icons': 1.3.0(react@18.3.1)
       '@radix-ui/react-navigation-menu': 1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -8233,15 +8233,29 @@ snapshots:
       react-icons: 5.3.0(react@18.3.1)
       react-responsive-carousel: 3.2.23
       react-router-dom: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      sanity: 3.61.0(@types/node@22.5.5)(@types/react@18.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       tailwind-merge: 2.5.2
       tailwindcss: 3.4.11
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.11)
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
+      - '@types/node'
       - '@types/react'
       - '@types/react-dom'
+      - bufferutil
+      - canvas
       - debug
+      - less
+      - lightningcss
+      - react-native
+      - sass
+      - styled-components
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
       - ts-node
+      - utf-8-validate
 
   p-finally@2.0.1: {}
 
@@ -8782,7 +8796,7 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/editor': 1.1.4(@sanity/block-tools@3.61.0)(@sanity/schema@3.61.0)(@sanity/types@3.61.0(debug@4.3.7))(@sanity/util@3.61.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@portabletext/editor': 1.1.4(@sanity/block-tools@3.61.0)(@sanity/schema@3.61.0)(@sanity/types@3.61.0)(@sanity/util@3.61.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rxjs@7.8.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@portabletext/react': 3.1.0(react@18.3.1)
       '@rexxars/react-json-inspector': 8.0.1(react@18.3.1)
       '@sanity/asset-utils': 2.0.6
@@ -8798,7 +8812,7 @@ snapshots:
       '@sanity/icons': 3.4.0(react@18.3.1)
       '@sanity/image-url': 1.0.2
       '@sanity/import': 3.37.8
-      '@sanity/insert-menu': 1.0.9(@sanity/types@3.61.0(debug@4.3.7))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@sanity/insert-menu': 1.0.9(@sanity/types@3.61.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@18.3.1)
       '@sanity/migrate': 3.61.0
       '@sanity/mutator': 3.61.0

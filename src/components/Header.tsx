@@ -87,7 +87,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/"> */}
                 <NavigationMenuLink
                   href="/"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider `} style={{fontSize:'17px'}}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`} style={{fontSize:'17px'}}
                 >
                   Home
                 </NavigationMenuLink>

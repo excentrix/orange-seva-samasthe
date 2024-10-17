@@ -1,8 +1,8 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import 'react-circular-progressbar/dist/styles.css';
 import { FaSeedling, FaUserMd, FaSchool, FaWater, FaHandsHelping, FaVirus } from "react-icons/fa";
+import CountUp from "react-countup";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -13,57 +13,51 @@ const pageVariants = {
 const metricsData = [
   {
     title: "Food Security",
-    value: 80,
-    text: "25M+",
+    value: 25000000, // 25M as number
+    suffix: "+", // Add "+" after the number
     description: "Distributed surplus food to over 25 million needy individuals.",
     icon: <FaSeedling className="text-4xl text-green-600" />,
-    textColor: "#4caf50",
-    pathColor: "#4caf50", // Green
+    textColor: "text-green-600", // Green color for count-up
   },
   {
     title: "Health Awareness",
-    value: 70,
-    text: "700+",
+    value: 700,
+    suffix: "+", // Add "+" after the number
     description: "Conducted 700+ eye camps, benefiting 40,000+ individuals.",
     icon: <FaUserMd className="text-4xl text-blue-600" />,
-    textColor: "#2196F3",
-    pathColor: "#2196F3", // Blue
+    textColor: "text-blue-600", // Blue color for count-up
   },
   {
     title: "Education",
-    value: 90,
-    text: "100+",
+    value: 100,
+    suffix: "+", // Add "+" after the number
     description: "Implemented the Vidyanjali Project in 100+ government schools.",
     icon: <FaSchool className="text-4xl text-orange-600" />,
-    textColor: "#FF9800",
-    pathColor: "#FF9800", // Orange
+    textColor: "text-orange-600", // Orange color for count-up
   },
   {
     title: "Environmental Conservation",
-    value: 60,
-    text: "500+",
+    value: 500,
+    suffix: "+", // Add "+" after the number
     description: "Installed 500+ water tubs annually for birds and animals.",
     icon: <FaWater className="text-4xl text-blue-400" />,
-    textColor: "#03A9F4",
-    pathColor: "#03A9F4", // Light Blue
+    textColor: "text-blue-400", // Light blue color for count-up
   },
   {
     title: "Community Support",
-    value: 75,
-    text: "1,000+",
+    value: 1000,
+    suffix: "+", // Add "+" after the number
     description: "Established support systems for 1,000+ senior citizens.",
     icon: <FaHandsHelping className="text-4xl text-purple-600" />,
-    textColor: "#673AB7",
-    pathColor: "#673AB7", // Purple
+    textColor: "text-purple-600", // Purple color for count-up
   },
   {
     title: "COVID-19 Response",
-    value: 85,
-    text: "200k+",
+    value: 200000,
+    suffix: "+", // Add "+" after the number
     description: "Distributed food kits to 200k+ individuals during the pandemic.",
     icon: <FaVirus className="text-4xl text-red-600" />,
-    textColor: "#F44336",
-    pathColor: "#F44336", // Red
+    textColor: "text-red-600", // Red color for count-up
   },
 ];
 
@@ -76,30 +70,30 @@ const Impact = () => (
     transition={{ duration: 0.5 }}
     className="space-y-8 p-8"
   >
-    <Card className="w-full max-w-4xl mx-auto shadow-lg">
+    <Card className="w-full max-w-6xl mx-auto shadow-lg">
       <CardHeader>
         <CardTitle className="text-3xl font-bold text-center">Our Impact</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {metricsData.map((metric, index) => (
-            <Card key={index} className="flex flex-col items-center p-4 shadow-md transition-transform transform hover:scale-105">
+            <Card key={index} className="flex flex-col items-center p-4 shadow-lg transition-transform transform hover:shadow-xl">
               <div className="mb-2">
                 {metric.icon}
               </div>
-              <div className="w-32 h-32 mb-4">
-                <CircularProgressbar
-                  value={metric.value}
-                  text={metric.text}
-                  styles={buildStyles({
-                    textColor: metric.textColor,
-                    pathColor: metric.pathColor,
-                    trailColor: "#d6d6d6",
-                  })}
+              <div className={`text-5xl font-bold mb-2 ${metric.textColor}`}>
+                <CountUp
+                  start={0}
+                  end={metric.value}
+                  duration={2}
+                  useEasing
+                  enableScrollSpy
+                  scrollSpyOnce
+                  suffix={metric.suffix} // Suffix added here
                 />
               </div>
-              <h4 className="text-lg font-bold mb-2 text-center ">{metric.title}</h4>
-              <p className="mt-2 text-gray-600 text-center ">{metric.description}</p>
+              <h4 className="text-lg font-bold mb-2 text-center">{metric.title}</h4>
+              <p className="mt-2 text-gray-600 text-center">{metric.description}</p>
             </Card>
           ))}
         </div>

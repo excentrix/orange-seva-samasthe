@@ -49,7 +49,7 @@ export const Team = () => (
         <h3 className="text-xl font-semibold mb-2">Leadership:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {teamMembers.map((member, index) => (
-            <Card key={index} className="shadow-lg">
+            <Card key={index} className="shadow-lg hover:shadow-xl">
               <CardContent className="flex flex-col items-center p-4">
                 <img
                   src={member.image}
