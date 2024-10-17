@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { FaSeedling, FaUserMd, FaSchool, FaWater, FaHandsHelping, FaVirus } from "react-icons/fa";
