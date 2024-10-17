@@ -93,7 +93,8 @@ const Mission = () => (
             <h3 className="text-xl font-semibold heading" style={{ fontSize: '18px', marginBottom: '15px', marginLeft: '18px' }}>
               {item.title}
             </h3>
-            <p className="poppins-paragraph" style={{ marginLeft: '18px' }}>{item.content}</p>
+            <p className="poppins-paragraph" style={{ paddingLeft: '20px'}}>{item.content}</p>
+            
           </div>
         ))}
       </div>
