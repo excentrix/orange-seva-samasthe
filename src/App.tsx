@@ -47,6 +47,8 @@ const App: React.FC = () => {
                 {/* About page routes */}
                 <Route path="/about" element={<About />} />
                 <Route path="/about/mission" element={<Mission />} />
+                <Route path="/mission" element={<Mission />} />
+
                 <Route path="/about/impact" element={<Impact />} />
                 <Route path="/about/history" element={<History />} />
                 <Route path="/about/team" element={<Team />} />
