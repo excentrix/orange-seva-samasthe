@@ -87,7 +87,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/"> */}
                 <NavigationMenuLink
                   href="/"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider `} style={{fontSize:'17px'}}
                 >
                   Home
                 </NavigationMenuLink>
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-sm`} style={{fontSize:'17px'}}
                 >
                   About
                 </NavigationMenuTrigger>
@@ -117,7 +117,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/projects"> */}
                 <NavigationMenuLink
                   href="/projects"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
                 >
                   Projects
                 </NavigationMenuLink>
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/gallery"> */}
                 <NavigationMenuLink
                   href="/gallery"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
                 >
                   Gallery
                 </NavigationMenuLink>
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/testimonials"> */}
                 <NavigationMenuLink
                   href="/testimonials"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
                 >
                   Testimonials
                 </NavigationMenuLink>
@@ -147,7 +147,7 @@ const Header: React.FC = () => {
                 {/* <Link to="/contact"> */}
                 <NavigationMenuLink
                   href="/contact"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
                 >
                   Contact
                 </NavigationMenuLink>
@@ -180,7 +180,7 @@ const Header: React.FC = () => {
           <div className="relative group">
             <button className="w-full text-left py-2 px-4 text-main hover:bg-orange-100 flex justify-between items-center">
               About
-              <span className="text-xs">▼</span>
+              <span className="text-base">▼</span>
             </button>
             <div className="hidden group-hover:block absolute left-0 mt-2 w-full bg-white shadow-md z-10">
               {aboutLinks.map((item) => (
