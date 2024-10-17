@@ -80,14 +80,15 @@ const Header: React.FC = () => {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-4">
+        <nav className="hidden lg:flex items-center space-x-4 font-hel">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 {/* <Link to="/"> */}
                 <NavigationMenuLink
                   href="/"
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`} style={{fontSize:'17px'}}
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`}
+                  style={{ fontSize: "17px" }}
                 >
                   Home
                 </NavigationMenuLink>
@@ -95,14 +96,13 @@ const Header: React.FC = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-sm`} style={{fontSize:'17px'}}
-
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-sm`}
+                  style={{ fontSize: "17px" }}
                 >
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] font-hel">
                     {aboutLinks.map((item) => (
                       <ListItem
                         key={item.title}
@@ -119,9 +119,8 @@ const Header: React.FC = () => {
                 {/* <Link to="/projects"> */}
                 <NavigationMenuLink
                   href="/projects"
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
-
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`}
+                  style={{ fontSize: "17px" }}
                 >
                   Projects
                 </NavigationMenuLink>
@@ -131,9 +130,8 @@ const Header: React.FC = () => {
                 {/* <Link to="/gallery"> */}
                 <NavigationMenuLink
                   href="/gallery"
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
-
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`}
+                  style={{ fontSize: "17px" }}
                 >
                   Gallery
                 </NavigationMenuLink>
@@ -143,9 +141,8 @@ const Header: React.FC = () => {
                 {/* <Link to="/testimonials"> */}
                 <NavigationMenuLink
                   href="/testimonials"
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
-
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`}
+                  style={{ fontSize: "17px" }}
                 >
                   Testimonials
                 </NavigationMenuLink>
@@ -155,9 +152,8 @@ const Header: React.FC = () => {
                 {/* <Link to="/contact"> */}
                 <NavigationMenuLink
                   href="/contact"
-
-                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
-
+                  className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`}
+                  style={{ fontSize: "17px" }}
                 >
                   Contact
                 </NavigationMenuLink>
@@ -178,7 +174,7 @@ const Header: React.FC = () => {
         <nav
           className={`lg:hidden w-full ${
             isMenuOpen ? "block" : "hidden"
-          } mt-4 space-y-2` }
+          } mt-4 space-y-2`}
         >
           <Link
             to="/"
