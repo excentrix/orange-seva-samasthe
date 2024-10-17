@@ -87,7 +87,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/"> */}
                 <NavigationMenuLink
                   href="/"
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider`} style={{fontSize:'17px'}}
+
                 >
                   Home
                 </NavigationMenuLink>
@@ -95,7 +97,9 @@ const Header: React.FC = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-sm`} style={{fontSize:'17px'}}
+
                 >
                   About
                 </NavigationMenuTrigger>
@@ -117,7 +121,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/projects"> */}
                 <NavigationMenuLink
                   href="/projects"
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
+
                 >
                   Projects
                 </NavigationMenuLink>
@@ -127,7 +133,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/gallery"> */}
                 <NavigationMenuLink
                   href="/gallery"
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
+
                 >
                   Gallery
                 </NavigationMenuLink>
@@ -137,7 +145,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/testimonials"> */}
                 <NavigationMenuLink
                   href="/testimonials"
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
+
                 >
                   Testimonials
                 </NavigationMenuLink>
@@ -147,7 +157,9 @@ const Header: React.FC = () => {
                 {/* <Link to="/contact"> */}
                 <NavigationMenuLink
                   href="/contact"
+
                   className={`${navigationMenuTriggerStyle()} font-semibold tracking-wider text-lg`} style={{fontSize:'17px'}}
+
                 >
                   Contact
                 </NavigationMenuLink>
@@ -168,7 +180,7 @@ const Header: React.FC = () => {
         <nav
           className={`lg:hidden w-full ${
             isMenuOpen ? "block" : "hidden"
-          } mt-4 space-y-2`}
+          } mt-4 space-y-2` }
         >
           <Link
             to="/"

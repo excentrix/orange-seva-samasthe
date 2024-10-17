@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0 },
@@ -31,6 +30,7 @@ const teamMembers = [
     image: "https://picsum.photos/200/200?random=4", // Placeholder image URL
   },
 ];
+
 
 export const Team = () => (
   <motion.div
@@ -66,6 +66,7 @@ export const Team = () => (
           Our strength lies in our volunteer network of over 100 active members
           from diverse backgrounds.
         </p>
+
       </CardContent>
     </Card>
   </motion.div>
