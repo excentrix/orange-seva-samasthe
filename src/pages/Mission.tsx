@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -27,7 +27,7 @@ const Section = ({ title, children }: any) => (
   </motion.section>
 );
 
-const cardItems = [
+const objectivesItems = [
   {
     image: "/public/photo-1.jpg",
     title: "Food Recovery and Redistribution",
@@ -42,13 +42,11 @@ const cardItems = [
     image: "/public/photo-3.png",
     title: "Community Engagement",
     content: "Organize campaigns and initiatives that raise awareness about food wastage and its impact, reaching over 5,000 venues. Implement programs like 'Don't Waste the Food' to strengthen connections between surplus food sources and those who need it most.",
-
   },
   {
     image: "/public/photo-4.jpg",
     title: "Health Initiatives",
     content: "Provide medical support through awareness camps focusing on critical health issues, particularly for vulnerable groups such as senior citizens and school girls. Facilitate eye operations and general health check-ups to improve overall well-being in the community.",
-
   },
 ];
 
@@ -60,6 +58,7 @@ const Mission = () => (
     variants={pageVariants}
     transition={{ duration: 0.5 }}
     className="space-y-8 p-0 max-w-full mx-auto mission-page"
+    style={{ backgroundColor: "transparent" }} // Ensure no white background
   >
     <Section
       title={
@@ -76,40 +75,32 @@ const Mission = () => (
         </span>
       }
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-0 m-b-0 ml-7 mr-7">
-        {cardItems.map((item, index) => (
-
-          <Card
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-1 mt-0 m-b-0 ml-7 mr-7">
+        {objectivesItems.map((item, index) => (
+          <div
             key={index}
-            className={`shadow-lg border-2 transition-all duration-75 ease-in-out ${index === 0 ? "-mt-5 mb-6" : index === 3 ? "-mt-5 mb-6" : "mt-0"}`}
-            style={{ fontSize: '14px', cursor: 'pointer' }}
+            className={`shadow-none transition-all duration-75 ease-in-out`}
+            style={{ fontSize: '14px', cursor: 'pointer', border: 'none', padding: '10px' }} // Remove card styles
           >
             <div className="mb-0 pl-2 pr-2 pt-2 pb-0">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full object-cover rounded-lg"
-                style={{ height: '120px', marginBottom: '0px', paddingBottom: '0px' }}
+                className="object-cover rounded-lg"
+                style={{ height: '180px', width:'600px', marginBottom: '15px', paddingBottom: '0px', borderRadius: '15px' }}
               />
             </div>
-            <CardHeader>
-              <CardTitle
-                className="text-xl font-semibold afacad-flux text-center heading"
-                style={{ fontSize: '18px', marginBottom: '0px' }}
-              >
-                {item.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent style={{ paddingTop: '0px' }}>
-              <p className="poppins-paragraph text-center " style={{ marginTop: '0px' }}>{item.content}</p>
-            </CardContent>
-          </Card>
+            <h3 className="text-xl font-semibold heading" style={{ fontSize: '18px', marginBottom: '15px', marginLeft: '18px' }}>
+              {item.title}
+            </h3>
+            <p className="poppins-paragraph" style={{ marginLeft: '18px' }}>{item.content}</p>
+          </div>
         ))}
       </div>
     </Section>
 
     <header>
-      <p className="text-center heading text-md" style={{ fontSize: '26px', marginTop: '120px', marginBottom: '90px' }}>"Together, we nourish."</p>
+      <p className="text-center poppins-paragraph text-md" style={{ fontSize: '26px', marginTop: '120px', marginBottom: '90px' }}>"Together, we nourish."</p>
     </header>
 
     {/* Updated Layout: Mission and Vision text on left, images on right */}
@@ -117,7 +108,7 @@ const Mission = () => (
       {/* Left Side: Mission and Vision Content */}
       <div className="space-y-8 ml-12">
         <div>
-          <h2 className="ml-60 mb-5 heading" style={{ fontSize: '24px' }}>Our Mission</h2>
+          <h2 className="font-semibold ml-60 mb-5 heading" style={{ fontSize: '24px' }}>Our Mission</h2>
           <p style={{ fontSize: '18px' }}>
             Our mission is to address hunger and food wastage in our community by redistributing
             surplus food and promoting awareness about food security and sustainability.
@@ -127,7 +118,7 @@ const Mission = () => (
         </div>
 
         <div>
-          <h2 className=" ml-60 mb-5 heading" style={{ fontSize: '24px' }}>Our Vision</h2>
+          <h2 className="font-semibold ml-60 mb-5 heading" style={{ fontSize: '24px' }}>Our Vision</h2>
           <p style={{ fontSize: '18px' }}>
             At OSS, we envision a world where food wastage is eradicated, and
             every individual has access to nourishing meals. We aspire to
@@ -184,7 +175,7 @@ const Mission = () => (
 
         <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out mt-0"> {/* Set mt-0 for the middle card */}
           <CardHeader>
-            <CardTitle className="text-xl text-center heading" style={{ fontSize: '22px'}}>
+            <CardTitle className="text-xl text-center heading" style={{ fontSize: '22px' }}>
               Pandemic Response
             </CardTitle>
           </CardHeader>
@@ -198,7 +189,7 @@ const Mission = () => (
 
         <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out flex flex-col items-center">
           <CardHeader>
-            <CardTitle className="text-xl text-center heading" style={{ fontSize: '22px'}}>
+            <CardTitle className="text-xl text-center heading" style={{ fontSize: '22px' }}>
               Health Services
             </CardTitle>
           </CardHeader>
@@ -212,6 +203,7 @@ const Mission = () => (
         </Card>
       </div>
     </Section>
+
 
     <div className="text-center mt-8">
       <Link to="/donate">

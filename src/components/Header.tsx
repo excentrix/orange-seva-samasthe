@@ -88,7 +88,7 @@ const Header: React.FC = () => {
                 <NavigationMenuLink
                   href="/"
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   Home
                 </NavigationMenuLink>
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   About
                 </NavigationMenuTrigger>
@@ -120,7 +120,7 @@ const Header: React.FC = () => {
                 <NavigationMenuLink
                   href="/projects"
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   Projects
                 </NavigationMenuLink>
@@ -131,7 +131,7 @@ const Header: React.FC = () => {
                 <NavigationMenuLink
                   href="/gallery"
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   Gallery
                 </NavigationMenuLink>
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
                 <NavigationMenuLink
                   href="/testimonials"
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   Testimonials
                 </NavigationMenuLink>
@@ -153,7 +153,7 @@ const Header: React.FC = () => {
                 <NavigationMenuLink
                   href="/contact"
                   className={`${navigationMenuTriggerStyle()} nav-font font-semibold tracking`}
-                  style={{fontSize:'15.5px'}}
+                  style={{fontSize:'15px'}}
                 >
                   Contact
                 </NavigationMenuLink>
