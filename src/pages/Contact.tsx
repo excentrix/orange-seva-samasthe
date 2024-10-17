@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Card, CardHeader, CardContent, CardDescription } from "@/components/ui/card";
 
 const Contact: React.FC = () => {
   return (
@@ -8,66 +9,70 @@ const Contact: React.FC = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold mb-8 text-orange-600"
+        className="text-3xl font-bold mb-8 text-gray-900"
+        style={{marginLeft:'200px', textDecoration: 'underline'}}
       >
         Contact Us
       </motion.h1>
       <div className="grid md:grid-cols-2 gap-8">
+        
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-full md:w-[650px]" 
         >
-          <p className="mb-6 text-lg">Get in touch with Orange Seva Samsthe:</p>
-          <ul className="list-none space-y-4">
-            <motion.li
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-4 rounded-lg shadow-md"
-            >
-              <strong className="text-orange-600">Address:</strong> #296, 7th
-              Cross, A-Main, Cellar, Hebbal 1st Stage, Hebbal, Mysore – 570016
-              Karnataka
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-4 rounded-lg shadow-md"
-            >
-              <strong className="text-orange-600">Email:</strong>{" "}
-              <a
-                href="mailto:sevaorange@gmail.com"
-                className="text-blue-600 hover:underline"
-              >
-                sevaorange@gmail.com
-              </a>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-4 rounded-lg shadow-md"
-            >
-              <strong className="text-orange-600">Phone:</strong>{" "}
-              <a
-                href="tel:+919113902995"
-                className="text-blue-600 hover:underline"
-              >
-                9113902995
-              </a>
-              ,{" "}
-              <a
-                href="tel:+916360814489"
-                className="text-blue-600 hover:underline"
-              >
-                6360814489
-              </a>
-            </motion.li>
-            <motion.li
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-4 rounded-lg shadow-md"
-            >
-              <strong className="text-orange-600">Contact Person:</strong> Mr.
-              Sunil P (BBM), General Secretary, OSS
-            </motion.li>
-          </ul>
+          <Card className="shadow-lg h-auto mb-12 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out"> 
+            <CardHeader>
+              <CardDescription className="text-xl text-gray-900">Get in touch with Orange Seva Samsthe</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-lg font-semibold text-gray-900">Address:</p>
+                  <p className="text-gray-800">
+                    #296, 7th Cross, A-Main, Cellar, Hebbal 1st Stage, Hebbal,
+                    Mysore – 570016, Karnataka
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900">Email:</p>
+                  <a
+                    href="mailto:sevaorange@gmail.com"
+                    className="text-gray-800 hover:underline"
+                  >
+                    sevaorange@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900">Phone:</p>
+                  <p className="text-gray-800">
+                    <a
+                      href="tel:+919113902995"
+                      className="text-gray-800 hover:underline"
+                    >
+                      9113902995
+                    </a>
+                    ,{" "}
+                    <a
+                      href="tel:+916360814489"
+                      className="text-gray-800 hover:underline"
+                    >
+                      6360814489
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900">Contact Person:</p>
+                  <p className="text-gray-800">
+                    Mr. Sunil P (BBM), General Secretary, OSS
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
