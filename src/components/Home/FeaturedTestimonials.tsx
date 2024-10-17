@@ -73,7 +73,7 @@ const FeaturedTestimonials: React.FC = () => {
       </h2>
       <Button variant="outline"
         className="absolute right-8 border-main text-main hover:bg-main hover:text-white z-10"
-        aria-label="Additional action"
+        aria-label="TestimonialButton"
       >
         <Link to="/Testimonials">Learn More</Link>
       </Button>
