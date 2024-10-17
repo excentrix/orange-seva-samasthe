@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -76,49 +77,15 @@
       font-weight: 400;
     }
 
-    .cabin-font {
-      font-family: 'Cabin', sans-serif;
-      font-weight: 400;
+    .heading{
+      font-family:'Verdana', sans-serif;
     }
 
-    .mission-page {
-      min-height: 100vh;
-      position: relative; 
-      overflow: hidden;
-      z-index: 1; 
-      color: white; 
+    .nav-font{
+      font-family: 'Slabo 13px', serif;
     }
+
     
-    .mission-page::before {
-      content: '';
-      background-image: url('/public/photo-3.webp'); 
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: absolute;
-      top:0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      opacity: 5; 
-      z-index: -1; 
-      filter: brightness(0.3);
-    }
-    
-    .accordion-container {
-      position: relative; 
-      z-index: 1; 
-      max-height: 70vh; 
-      overflow-y: auto; 
-    }
-    .carousel-text, .accordion-text, .card-text {
-      color: white !important; 
-    }
-    
-    .carousel-item, .accordion-item, .card-item {
-      position: relative; 
-    }
   }
 }
 
