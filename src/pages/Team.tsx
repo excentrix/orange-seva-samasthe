@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 677b238488830cf56cd9987827601bf1da6a94ed
+=======
+>>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -12,6 +15,9 @@ const pageVariants = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
 // Sample data for team members
 const teamMembers = [
   {
@@ -36,8 +42,12 @@ const teamMembers = [
   },
 ];
 
+<<<<<<< HEAD
 =======
 >>>>>>> 677b238488830cf56cd9987827601bf1da6a94ed
+=======
+
+>>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
 export const Team = () => (
   <motion.div
     initial="initial"
@@ -73,9 +83,13 @@ export const Team = () => (
           from diverse backgrounds.
         </p>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 677b238488830cf56cd9987827601bf1da6a94ed
+=======
+
+>>>>>>> 28074ca8146a887d3b01c95c5887babc351fd313
       </CardContent>
     </Card>
   </motion.div>
