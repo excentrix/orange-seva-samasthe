@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+// import sanityClient from '@sanity/client';
+// import imageUrlBuilder from '@sanity/image-url';
+import { urlFor } from "@/lib/sanity";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -29,26 +32,47 @@ const Section = ({ title, children }: any) => (
 
 const objectivesItems = [
   {
-    image: "/public/photo-1.jpg",
+    image: {
+      _type: "image",
+      asset: {
+        _ref: "image-543ab231a422ae7807a1e5e89e79e7461a6a2d7a-800x400-jpg"
+      }
+    },
     title: "Food Recovery and Redistribution",
     content: "Partner with event venues, caterers, and community organizations to identify and collect surplus food. Ensure safe, hygienic, and timely delivery of meals to individuals and families in need.",
   },
   {
-    image: "/public/photo-2.jpg",
+    image: {
+      _type: "image",
+      asset: {
+        _ref: "image-a752113316db62e928121c3c3608c641e5af4196-428x285-jpg"
+      }
+    },
     title: "Awareness and Education",
     content: "Conduct seminars and workshops in schools, colleges, and community centers to educate individuals about food security, cultural values, and sustainable practices. Foster a culture of mindfulness around food consumption and waste through community engagement and outreach.",
   },
   {
-    image: "/public/photo-3.png",
+    image: {
+      _type: "image",
+      asset: {
+        _ref: "image-f40f9d0af586fe45a542c99fbb7b2e4f5303fbad-347x261-png"
+      }
+    },
     title: "Community Engagement",
     content: "Organize campaigns and initiatives that raise awareness about food wastage and its impact, reaching over 5,000 venues. Implement programs like 'Don't Waste the Food' to strengthen connections between surplus food sources and those who need it most.",
   },
   {
-    image: "/public/photo-4.jpg",
+    image: {
+      _type: "image",
+      asset: {
+        _ref: "image-1aa187ec0ef4da0c0185c202b7465812f44b70bb-1200x800-jpg"
+      }
+    },
     title: "Health Initiatives",
     content: "Provide medical support through awareness camps focusing on critical health issues, particularly for vulnerable groups such as senior citizens and school girls. Facilitate eye operations and general health check-ups to improve overall well-being in the community.",
   },
 ];
+
 
 const Mission = () => (
   <motion.div
@@ -58,7 +82,7 @@ const Mission = () => (
     variants={pageVariants}
     transition={{ duration: 0.5 }}
     className="space-y-8 p-0 max-w-full mx-auto mission-page"
-    style={{ backgroundColor: "transparent" }} // Ensure no white background
+    style={{ backgroundColor: "transparent" }}
   >
     <Section
       title={
@@ -80,21 +104,21 @@ const Mission = () => (
           <div
             key={index}
             className={`shadow-none transition-all duration-75 ease-in-out`}
-            style={{ fontSize: '14px', cursor: 'pointer', border: 'none', padding: '10px' }} // Remove card styles
+            style={{ fontSize: '14px', cursor: 'pointer', border: 'none', padding: '10px' }} s
           >
             <div className="mb-0 pl-2 pr-2 pt-2 pb-0">
               <img
-                src={item.image}
+                src={urlFor(item.image).url()}
                 alt={item.title}
                 className="object-cover rounded-lg"
-                style={{ height: '180px', width:'600px', marginBottom: '15px', paddingBottom: '0px', borderRadius: '15px' }}
+                style={{ height: '180px', width: '600px', marginBottom: '15px', paddingBottom: '0px', borderRadius: '15px' }}
               />
             </div>
             <h3 className="text-xl font-semibold heading" style={{ fontSize: '18px', marginBottom: '15px', marginLeft: '18px' }}>
               {item.title}
             </h3>
-            <p className="poppins-paragraph" style={{ paddingLeft: '20px'}}>{item.content}</p>
-            
+            <p className="poppins-paragraph" style={{ paddingLeft: '20px' }}>{item.content}</p>
+
           </div>
         ))}
       </div>
@@ -105,8 +129,8 @@ const Mission = () => (
     </header>
 
     {/* Updated Layout: Mission and Vision text on left, images on right */}
+
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
-      {/* Left Side: Mission and Vision Content */}
       <div className="space-y-8 ml-12">
         <div>
           <h2 className="font-semibold ml-60 mb-5 heading" style={{ fontSize: '24px' }}>Our Mission</h2>
@@ -132,13 +156,24 @@ const Mission = () => (
       {/* Right Side: Two Images */}
       <div className="grid grid-cols-2 gap-4 mr-8">
         <img
-          src="/public/photo-5.jpg"
+          src={urlFor({
+            _type: "image",
+            asset: {
+              _ref: "image-198cdb2732647af07602ea58b65e196c50ec2539-643x360-jpg"
+            }
+          }).url()}
           alt="Mission Image"
           className="w-full object-cover rounded-lg"
           style={{ height: '300px' }}
         />
+
         <img
-          src="/public/photo-6.jpg"
+          src={urlFor({
+            _type: "image",
+            asset: {
+              _ref: "image-1347bf64b7fc5801ace62ae67711901d9a66e4f9-880x660-jpg"
+            }
+          }).url()}
           alt="Vision Image"
           className="w-full h-auto object-cover rounded-lg"
           style={{ height: '300px' }}
@@ -208,7 +243,7 @@ const Mission = () => (
 
     <div className="text-center mt-8">
       <Link to="/donate">
-        <Button size="lg" style={{ marginBottom: '20px' }}>
+        <Button style={{ marginBottom: '20px' }}>
           Get Involved
         </Button>
       </Link>
