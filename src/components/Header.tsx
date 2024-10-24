@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +14,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react"; // Make sure to install lucide-react
-import { urlFor } from "@/lib/sanity";
+// import { urlFor } from "@/lib/sanity";
+import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
 
 const aboutLinks: { title: string; href: string; description: string }[] = [
   {
@@ -48,7 +52,7 @@ const Header: React.FC = () => {
     <header className="bg-white shadow-md z-20 w-full flex items-center justify-center">
       <div className="container mx-1 p-4 flex flex-wrap justify-between items-center w-full">
         <Link
-          to="/"
+          href="/"
           className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-primary"
         >
           <img
@@ -167,7 +171,7 @@ const Header: React.FC = () => {
           variant="default"
           className="hidden lg:flex bg-main font-semibold tracking-widest rounded-full px-10"
         >
-          <Link to="/donate">Donate</Link>
+          <Link href="/donate">Donate</Link>
         </Button>
 
         {/* Mobile Navigation */}
@@ -177,7 +181,7 @@ const Header: React.FC = () => {
           } mt-4 space-y-2`}
         >
           <Link
-            to="/"
+            href="/"
             className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
@@ -192,7 +196,7 @@ const Header: React.FC = () => {
               {aboutLinks.map((item) => (
                 <Link
                   key={item.title}
-                  to={item.href}
+                  href={item.href}
                   className="block py-2 px-4 text-main hover:bg-orange-100"
                   onClick={toggleMenu}
                 >
@@ -202,35 +206,35 @@ const Header: React.FC = () => {
             </div>
           </div>
           <Link
-            to="/projects"
+            href="/projects"
             className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Projects
           </Link>
           <Link
-            to="/gallery"
+            href="/gallery"
             className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Gallery
           </Link>
           <Link
-            to="/testimonials"
+            href="/testimonials"
             className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Testimonials
           </Link>
           <Link
-            to="/contact"
+            href="/contact"
             className="block py-2 px-4 text-main hover:bg-orange-100"
             onClick={toggleMenu}
           >
             Contact
           </Link>
           <Link
-            to="/donate"
+            href="/donate"
             className="block py-2 px-4 bg-main text-white hover:bg-orange-600"
             onClick={toggleMenu}
           >

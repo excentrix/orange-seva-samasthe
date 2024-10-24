@@ -1,10 +1,11 @@
 // src/components/FeaturedTestimonials.tsx
 import React, { useEffect, useState } from "react";
-import { client, urlFor } from "@/lib/sanity";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 
 interface Image {
@@ -75,7 +76,7 @@ const FeaturedTestimonials: React.FC = () => {
         className="absolute right-8 border-main text-main hover:bg-main hover:text-white z-10"
         aria-label="TestimonialButton"
       >
-        <Link to="/Testimonials">Learn More</Link>
+        <Link href="/testimonials">Learn More</Link>
       </Button>
       <div className="flex flex-col md:flex-row items-center gap-20">
         <div className="w-full md:w-1/2">

@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { urlFor } from "@/lib/sanity";
+import { urlFor } from "@/sanity/lib/image";
 
 interface TransformationCard {
   title: string;
