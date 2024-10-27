@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
 
 interface MissionProps {
@@ -14,11 +14,22 @@ interface MissionProps {
   }[];
 }
 
-const MissionSection: React.FC<MissionProps> = ({
-  title,
-  description,
-  images,
-}) => {
+const MissionSection: React.FC<MissionProps> = ({ title, description, images }) => {
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Only set to true on the client-side to ensure NextRouter is mounted
+    setIsClient(true);
+  }, []);
+
+  const handleLearnClick = () => {
+    // Ensure router push only happens if client is true
+    if (isClient) {
+      router.push('/about/mission');
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,20 +62,16 @@ const MissionSection: React.FC<MissionProps> = ({
       >
         <div className="lg:w-3/5 grid grid-cols-2 gap-4">
           {images.map((image, index) => (
-            <motion.img
-              key={index}
-              src={
-                urlFor(image.imageUrl)
-                  .height(600)
-                  .format("webp")
-                  .quality(80)
-                  .url() || ""
-              }
-              loading="lazy"
-              alt={image.alt}
-              className="w-full h-full object-cover rounded-lg grayscale first:row-span-2"
-              variants={itemVariants}
-            />
+            <motion.div key={index} className="relative w-full h-0 pb-[100%]"> {/* Aspect Ratio Box */}
+              <motion.img
+                src={urlFor(image.imageUrl).height(600).format("webp").quality(80).url() || ""}
+                loading="lazy"
+                alt={image.alt}
+                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale"
+                style={{ objectFit: 'cover' }} // Ensures the image covers the div
+                variants={itemVariants}
+              />
+            </motion.div>
           ))}
         </div>
         <motion.div className="lg:w-2/5" variants={itemVariants}>
@@ -73,8 +80,9 @@ const MissionSection: React.FC<MissionProps> = ({
           <Button
             variant="outline"
             className="border-main text-main hover:bg-main hover:text-white"
+            onClick={handleLearnClick}
           >
-            <Link href="/Mission">Learn More</Link>
+            Click to learn
           </Button>
         </motion.div>
       </motion.div>

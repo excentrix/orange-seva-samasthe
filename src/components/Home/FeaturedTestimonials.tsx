@@ -1,4 +1,3 @@
-// src/components/FeaturedTestimonials.tsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -6,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-
 
 interface Image {
   _id: string;
@@ -25,6 +23,7 @@ interface Testimonial {
 const FeaturedTestimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false); // Add mounted state
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -40,7 +39,9 @@ const FeaturedTestimonials: React.FC = () => {
         }
       `);
       setTestimonials(data);
+      setIsMounted(true); // Set mounted state to true after fetching data
     };
+
     fetchTestimonials();
   }, []);
 
@@ -56,34 +57,29 @@ const FeaturedTestimonials: React.FC = () => {
     );
   };
 
-  if (testimonials.length === 0) return null;
+  // Suppress hydration warnings by rendering only after mounting
+  if (!isMounted || testimonials.length === 0) return null;
 
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    
     <section className="py-16 px-4 md:px-8 max-w-4xl mx-auto relative">
-
-      {/* py-16 px-4 md:px-8 max-w-6xl mx-auto */}
-     
-
-
-
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
         Impact Stories
       </h2>
-      <Button variant="outline"
+      <Button
+        variant="outline"
         className="absolute right-8 border-main text-main hover:bg-main hover:text-white z-10"
         aria-label="TestimonialButton"
       >
-        <Link href="/testimonials">Learn More</Link>
+        <Link href="/testimonials">Explore here!</Link>
       </Button>
       <div className="flex flex-col md:flex-row items-center gap-20">
         <div className="w-full md:w-1/2">
           <motion.img
             key={currentTestimonial._id}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1 }} // Animate based on mount state
             transition={{ duration: 0.5 }}
             loading="lazy"
             src={urlFor(currentTestimonial.image.image)
@@ -110,7 +106,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={currentTestimonial._id}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1 }} // Animate based on mount state
             transition={{ duration: 0.5 }}
             className="text-xl mb-6"
           >
@@ -119,7 +115,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={`${currentTestimonial._id}-name`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1 }} // Animate based on mount state
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-bold text-xl text-main"
           >
@@ -128,7 +124,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={`${currentTestimonial._id}-role`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1 }} // Animate based on mount state
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-gray-400 text-lg"
           >

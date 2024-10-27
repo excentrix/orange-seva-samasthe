@@ -1,5 +1,6 @@
 // src/components/StructuredData.tsx
-import { Helmet } from "react-helmet-async";
+import { Head } from "next/document";
+
 
 interface StructuredDataProps {
   type: "Organization" | "NGO";
@@ -26,11 +27,11 @@ const StructuredData: React.FC<StructuredDataProps> = ({
   };
 
   return (
-    <Helmet>
+    <Head>
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
-    </Helmet>
+    </Head>
   );
 };
 

@@ -67,6 +67,23 @@
     --chart-5: 340 75% 55%;
   }
 
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  .hero-opacity {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+  
+  .hero-opacity.visible {
+    opacity: 1;
+  }
+  
   @layer components {
     .poppins-paragraph {
       font-family: 'Poppins', sans-serif;
@@ -77,24 +94,12 @@
       font-weight: 400;
     }
 
-    .heading{
-      font-family:'Verdana', sans-serif;
+    .heading {
+      font-family: 'Verdana', sans-serif;
     }
 
-    .nav-font{
+    .nav-font {
       font-family: 'Slabo 13px', serif;
     }
-
-    
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }

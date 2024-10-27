@@ -1,8 +1,10 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -28,34 +30,56 @@ const Section = ({ title, children }: any) => (
   </motion.section>
 );
 
-const objectivesItems = [
-  {
-    image: "/public/photo-1.jpg",
-    title: "Food Recovery and Redistribution",
-    content:
-      "Partner with event venues, caterers, and community organizations to identify and collect surplus food. Ensure safe, hygienic, and timely delivery of meals to individuals and families in need.",
-  },
-  {
-    image: "/public/photo-2.jpg",
-    title: "Awareness and Education",
-    content:
-      "Conduct seminars and workshops in schools, colleges, and community centers to educate individuals about food security, cultural values, and sustainable practices. Foster a culture of mindfulness around food consumption and waste through community engagement and outreach.",
-  },
-  {
-    image: "/public/photo-3.png",
-    title: "Community Engagement",
-    content:
-      "Organize campaigns and initiatives that raise awareness about food wastage and its impact, reaching over 5,000 venues. Implement programs like 'Don't Waste the Food' to strengthen connections between surplus food sources and those who need it most.",
-  },
-  {
-    image: "/public/photo-4.jpg",
-    title: "Health Initiatives",
-    content:
-      "Provide medical support through awareness camps focusing on critical health issues, particularly for vulnerable groups such as senior citizens and school girls. Facilitate eye operations and general health check-ups to improve overall well-being in the community.",
-  },
-];
+const Page: React.FC = () => {
+  const [images, setImages] = useState<any[]>([]);
 
-export default function Page() {
+  useEffect(() => {
+    const fetchImages = async () => {
+      const data = await client.fetch(`
+        *[_type == "customImage"]{
+          _id,
+          "image": image.asset->url,
+          alt,
+          caption
+        }
+      `);
+      setImages(data);
+    };
+    fetchImages();
+  }, []);
+
+  // Filter images for objectives and vision/mission
+  const visionMissionImages = images.filter(img => ["5", "6"].includes(img.caption))
+  .sort((a, b) => parseInt(a.caption) - parseInt(b.caption)); // Sort images by caption number
+
+  const objectivesItems = [
+    {
+      title: "Food Recovery and Redistribution",
+      content:
+        "Partner with event venues, caterers, and community organizations to identify and collect surplus food. Ensure safe, hygienic, and timely delivery of meals to individuals and families in need.",
+    },
+    {
+      title: "Awareness and Education",
+      content:
+        "Conduct seminars and workshops in schools, colleges, and community centers to educate individuals about food security, cultural values, and sustainable practices. Foster a culture of mindfulness around food consumption and waste through community engagement and outreach.",
+    },
+    {
+      title: "Community Engagement",
+      content:
+        "Organize campaigns and initiatives that raise awareness about food wastage and its impact, reaching over 5,000 venues. Implement programs like 'Don't Waste the Food' to strengthen connections between surplus food sources and those who need it most.",
+    },
+    {
+      title: "Health Initiatives",
+      content:
+        "Provide medical support through awareness camps focusing on critical health issues, particularly for vulnerable groups such as senior citizens and school girls. Facilitate eye operations and general health check-ups to improve overall well-being in the community.",
+    },
+  ];
+  
+  // Fetch images from Sanity with captions "1", "2", "3", "4"
+  const objectivesImages = images
+    .filter(img => ["1", "2", "3", "4"].includes(img.caption))
+    .sort((a, b) => parseInt(a.caption) - parseInt(b.caption)); // Sort images by caption number
+  
   return (
     <motion.div
       initial="initial"
@@ -95,8 +119,8 @@ export default function Page() {
             >
               <div className="mb-0 pl-2 pr-2 pt-2 pb-0">
                 <img
-                  src={item.image}
-                  alt={item.title}
+                  src={objectivesImages[index]?.image} // Fetching the image based on the index
+                  alt={objectivesImages[index]?.title}
                   className="object-cover rounded-lg"
                   style={{
                     height: "180px",
@@ -134,23 +158,19 @@ export default function Page() {
         </p>
       </header>
 
-      {/* Updated Layout: MissionPage and Vision text on left, images on right */}
+      {/* Updated Layout: Mission and Vision text on left, images on right */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
-        {/* Left Side: MissionPage and Vision Content */}
+        {/* Left Side: Mission and Vision Content */}
         <div className="space-y-8 ml-12">
           <div>
             <h2
               className="font-semibold ml-60 mb-5 heading"
               style={{ fontSize: "24px" }}
             >
-              Our MissionPage
+              Our Mission
             </h2>
             <p style={{ fontSize: "18px" }}>
-              Our MissionPage is to address hunger and food wastage in our
-              community by redistributing surplus food and promoting awareness
-              about food security and sustainability. We aim to build a caring
-              and strong community where everyone has access to good food and
-              healthcare.
+              Our Mission is to address hunger and food wastage in our community by redistributing surplus food and promoting awareness about food security and sustainability. We aim to build a caring and strong community where everyone has access to good food and healthcare.
             </p>
           </div>
 
@@ -162,28 +182,22 @@ export default function Page() {
               Our Vision
             </h2>
             <p style={{ fontSize: "18px" }}>
-              At OSS, we envision a world where food wastage is eradicated, and
-              every individual has access to nourishing meals. We aspire to
-              cultivate a culture of giving that transforms our society,
-              ensuring that no one goes hungry.
+              At OSS, we envision a world where food wastage is eradicated, and every individual has access to nourishing meals. We aspire to cultivate a culture of giving that transforms our society, ensuring that no one goes hungry.
             </p>
           </div>
         </div>
 
-        {/* Right Side: Two Images */}
+        {/* Right Side: Vision and Mission Images */}
         <div className="grid grid-cols-2 gap-4 mr-8">
-          <img
-            src="/public/photo-5.jpg"
-            alt="MissionPage Image"
-            className="w-full object-cover rounded-lg"
-            style={{ height: "300px" }}
-          />
-          <img
-            src="/public/photo-6.jpg"
-            alt="Vision Image"
-            className="w-full h-auto object-cover rounded-lg"
-            style={{ height: "300px" }}
-          />
+          {visionMissionImages.map((image, index) => (
+            <img
+              key={index}
+              src={image.image}
+              alt={image.alt}
+              className="w-full object-cover rounded-lg"
+              style={{ height: "300px" }}
+            />
+          ))}
         </div>
       </div>
 
@@ -194,7 +208,7 @@ export default function Page() {
               fontFamily: "Verdana, sans-serif",
               fontWeight: "bolder",
               fontSize: "25px",
-              marginLeft: "560px",
+              textAlign:"center",
               marginTop: "150px",
             }}
           >
@@ -214,16 +228,13 @@ export default function Page() {
             </CardHeader>
             <CardContent>
               <p className="poppins-paragraph text-center">
-                Over 20,000 individuals have benefited from our food
-                redistribution efforts, particularly during weddings and
-                community events.
+                Over 20,000 individuals have benefited from our food redistribution efforts, particularly during weddings and community events.
               </p>
             </CardContent>
           </Card>
 
           <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out mt-0">
-            {" "}
-            {/* Set mt-0 for the middle card */}
+            {" "} {/* Set mt-0 for the middle card */}
             <CardHeader>
               <CardTitle
                 className="text-xl text-center heading"
@@ -234,26 +245,23 @@ export default function Page() {
             </CardHeader>
             <CardContent>
               <p className="poppins-paragraph text-center">
-                During the Covid-19 pandemic, OSS delivered food and essentials
-                to over 200,000 individuals facing hardship.
+                During the Covid-19 pandemic, OSS delivered food and essentials to over 200,000 individuals and families.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out flex flex-col items-center">
+          <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out">
             <CardHeader>
               <CardTitle
                 className="text-xl text-center heading"
                 style={{ fontSize: "22px" }}
               >
-                Health Services
+                Healthcare Initiatives
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="poppins-paragraph text-center">
-                We have successfully supported 40,000 senior citizens in eye
-                surgeries and conducted more than 700 medical camps, raising
-                awareness about health issues.
+                OSS organized free health camps, reaching over 10,000 beneficiaries with essential health services and check-ups.
               </p>
             </CardContent>
           </Card>
@@ -267,6 +275,9 @@ export default function Page() {
           </Button>
         </Link>
       </div>
+      
     </motion.div>
   );
-}
+};
+
+export default Page;

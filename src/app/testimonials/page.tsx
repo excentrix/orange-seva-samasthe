@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { client } from "@/sanity/lib/client";
+import  { client }  from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 interface Image {
@@ -20,6 +20,7 @@ interface Testimonial {
 
 const Testimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); // Track loading state
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -34,23 +35,22 @@ const Testimonials: React.FC = () => {
           }
         }
       `);
-      // const data = await client.fetch(`
-      //   *[_type == "testimonial"]{
-      //     _id,
-      //     name,
-      //     quote,
-      //     role,
-      //     "image": image->{
-      //       _id,
-      //       "image": image.asset->url,
-      //       alt
-      //     }
-      //   }
-      // `);
       setTestimonials(data);
+      setLoading(false); // Set loading to false after data is fetched
     };
     fetchTestimonials();
   }, []);
+
+  // Render a loading state or a fallback UI while fetching data
+  if (loading) {
+    return (
+      <div className="bg-off-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <p>Loading testimonials...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-off-white py-16">
@@ -80,7 +80,7 @@ const Testimonials: React.FC = () => {
                     .format("webp")
                     .quality(80)
                     .fit("crop")
-                    .url()}
+                    .url() || ''} // Ensure a fallback
                   alt={testimonial.image.alt || testimonial.name}
                   loading="lazy"
                   className="w-64 h-64 object-fill rounded-lg mt-6"

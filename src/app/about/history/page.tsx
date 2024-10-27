@@ -21,28 +21,54 @@ interface TimelineItem {
   _id: string;
   title: string;
   content: string;
+  year?: number; // Mark as optional
   images: CustomImage[];
 }
 
 export const History = () => {
   const [timelineData, setTimelineData] = useState<TimelineItem[]>([]);
+  const [historyContent, setHistoryContent] = useState<string>("");
 
   useEffect(() => {
     const fetchTimelineData = async () => {
-      const query = `*[_type == "timeline"] | order(order asc) {
-        _id,
-        title,
-        content,
-        "images": images[]->{
-        "imageUrl": image.asset->url,
-        alt,
-        caption
+      const query = `
+      {
+        "history": *[_type == "history"] {
+          content
+        },
+        "timeline": *[_type == "timeline"] | order(order asc) {
+          _id,
+          title,
+          content,
+          year,
+          "images": images[]->{
+            "imageUrl": image.asset->url,
+            alt,
+            caption
+          }
+        }
       }
-      }`;
+      `;
 
       try {
         const result = await client.fetch(query);
-        setTimelineData(result);
+        
+        // Log fetched data for debugging
+        console.log("Fetched data:", result);
+
+        // Set the history content if it exists
+        if (result.history.length > 0) {
+          setHistoryContent(result.history[0].content);
+        } else {
+          console.warn("No history content found.");
+        }
+
+        // Set the timeline data if it exists
+        if (result.timeline) {
+          setTimelineData(result.timeline);
+        } else {
+          console.warn("No timeline data found.");
+        }
       } catch (error) {
         console.error("Error fetching timeline data:", error);
       }
@@ -57,7 +83,7 @@ export const History = () => {
         {item.content}
       </p>
       <div className="grid grid-cols-2 gap-4">
-        {item.images.map((image, index) => (
+        {(item.images || []).map((image, index) => (
           <figure key={index} className="relative">
             <img
               src={
@@ -85,10 +111,13 @@ export const History = () => {
     </div>
   );
 
-  const formattedData = timelineData.map((item) => ({
-    title: item.title,
-    content: renderContent(item),
-  }));
+  // Prepare data for rendering
+  const formattedData = [
+    ...timelineData.map((item) => ({
+      title: item.year ? `${item.year}: ${item.title}` : item.title, // Only include year if it exists
+      content: renderContent(item),
+    })),
+  ];
 
   return (
     <motion.div

@@ -9,7 +9,7 @@ module.exports = {
   ],
   theme: {
     container: {
-      center: "true",
+      center: true,
       padding: "2rem",
       screens: {
         "2xl": "1400px",
@@ -18,7 +18,6 @@ module.exports = {
     extend: {
       colors: {
         main: "#0fb9b1",
-        primary: "#FF6B35",
         "orange-secondary": "#F7C59F",
         "blue-accent": "#2EC4B6",
         "off-white": "#EFEFEF",
@@ -70,38 +69,20 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         fadeIn: {
-          "0%": {
-            opacity: "0",
-          },
-          "100%": {
-            opacity: "1",
-          },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         slideIn: {
-          "0%": {
-            transform: "translateY(50px)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateY(0)",
-            opacity: "1",
-          },
+          "0%": { transform: "translateY(50px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
       },
       animation: {

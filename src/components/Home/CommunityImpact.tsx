@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -15,6 +15,15 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
   title,
   image,
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true); // Set to true after the component mounts
+  }, []);
+
+  // Suppress hydration warnings by rendering only after mounting
+  if (!isMounted) return null;
+
   return (
     <section className="py-16 relative">
       <div className="absolute top-0 left-0 right-0 h-4/6 bg-main"></div>

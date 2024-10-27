@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             height={32}
             className="w-8 h-8 sm:w-12 sm:h-12"
           />
-          <span className="hidden sm:inline">Orange Seva Samsthe</span>
+          <h1 className="hidden sm:inline">Orange Seva Samsthe</h1>
         </Link>
 
         {/* Mobile menu button */}

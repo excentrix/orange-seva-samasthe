@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -9,80 +9,90 @@ import {
 } from "@/components/ui/card";
 
 const Contact: React.FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true); // Set mounted state to true after the component has mounted
+  }, []);
+
   return (
     <div className="container mx-auto mt-8 px-4">
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-3xl font-bold mb-8 text-gray-900"
-        style={{ marginLeft: "200px", textDecoration: "underline" }}
-      >
-        Contact Us
-      </motion.h1>
-      <div className="grid md:grid-cols-2 gap-8">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full md:w-[650px]"
+      {isMounted && ( // Ensure animations only render on the client
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold mb-8 text-gray-900"
+          style={{ marginLeft: "200px", textDecoration: "underline" }}
         >
-          <Card className="shadow-lg h-auto mb-12 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out">
-            <CardHeader>
-              <CardDescription className="text-xl text-gray-900">
-                Get in touch with Orange Seva Samsthe
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-lg font-semibold text-gray-900">
-                    Address:
-                  </p>
-                  <p className="text-gray-800">
-                    #296, 7th Cross, A-Main, Cellar, Hebbal 1st Stage, Hebbal,
-                    Mysore – 570016, Karnataka
-                  </p>
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-900">Email:</p>
-                  <a
-                    href="mailto:sevaorange@gmail.com"
-                    className="text-gray-800 hover:underline"
-                  >
-                    sevaorange@gmail.com
-                  </a>
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-900">Phone:</p>
-                  <p className="text-gray-800">
+          Contact Us
+        </motion.h1>
+      )}
+      <div className="grid md:grid-cols-2 gap-8">
+        {isMounted && ( // Wrap other animated elements similarly
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full md:w-[650px]"
+          >
+            <Card className="shadow-lg h-auto mb-12 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out">
+              <CardHeader>
+                <CardDescription className="text-xl text-gray-900">
+                  Get in touch with Orange Seva Samsthe
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-lg font-semibold text-gray-900">
+                      Address:
+                    </p>
+                    <p className="text-gray-800">
+                      #296, 7th Cross, A-Main, Cellar, Hebbal 1st Stage, Hebbal,
+                      Mysore – 570016, Karnataka
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-semibold text-gray-900">Email:</p>
                     <a
-                      href="tel:+919113902995"
+                      href="mailto:sevaorange@gmail.com"
                       className="text-gray-800 hover:underline"
                     >
-                      9113902995
+                      sevaorange@gmail.com
                     </a>
-                    ,{" "}
-                    <a
-                      href="tel:+916360814489"
-                      className="text-gray-800 hover:underline"
-                    >
-                      6360814489
-                    </a>
-                  </p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-semibold text-gray-900">Phone:</p>
+                    <p className="text-gray-800">
+                      <a
+                        href="tel:+919113902995"
+                        className="text-gray-800 hover:underline"
+                      >
+                        9113902995
+                      </a>
+                      ,{" "}
+                      <a
+                        href="tel:+916360814489"
+                        className="text-gray-800 hover:underline"
+                      >
+                        6360814489
+                      </a>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-semibold text-gray-900">
+                      Contact Person:
+                    </p>
+                    <p className="text-gray-800">
+                      Mr. Sunil P (BBM), General Secretary, OSS
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-900">
-                    Contact Person:
-                  </p>
-                  <p className="text-gray-800">
-                    Mr. Sunil P (BBM), General Secretary, OSS
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, x: 50 }}
