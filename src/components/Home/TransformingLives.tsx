@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 interface TransformationCard {
   title: string;
@@ -69,7 +70,7 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
           {cards.map((card, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="overflow-hidden border-none shadow-none">
-                <img
+                <Image
                   src={
                     urlFor(card.image.imageUrl)
                       .width(800)
@@ -79,6 +80,8 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
                   }
                   loading="lazy"
                   alt={card.image.alt}
+                  width={800} // Specify the width
+                  height={240} // Specify the height (60 * 800 / width for the aspect ratio)
                   className="w-full h-60 object-cover rounded-xl"
                 />
                 <CardHeader>

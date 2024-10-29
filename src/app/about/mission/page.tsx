@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image"; // Import Image from next/image for optimized image handling
 import { client } from "@/sanity/lib/client";
 
 const pageVariants = {
@@ -17,7 +18,13 @@ const sectionVariants = {
   animate: { opacity: 1, x: 0 },
 };
 
-const Section = ({ title, children }: any) => (
+// Specify Section props type
+interface SectionProps {
+  title: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({ title, children }) => (
   <motion.section
     variants={sectionVariants}
     initial="initial"
@@ -30,27 +37,33 @@ const Section = ({ title, children }: any) => (
   </motion.section>
 );
 
+// Define ImageItem type for images state
+interface ImageItem {
+  _id: string;
+  image: string;
+  alt: string;
+  caption: string;
+}
+
 const Page: React.FC = () => {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<ImageItem[]>([]);
 
   useEffect(() => {
     const fetchImages = async () => {
-      const data = await client.fetch(`
-        *[_type == "customImage"]{
+      const data = await client.fetch(`*[_type == "customImage"]{
           _id,
           "image": image.asset->url,
           alt,
           caption
-        }
-      `);
+        }`); // Ensure this matches your requirements, including the asterisk changes
       setImages(data);
-    };
+    };    
     fetchImages();
   }, []);
 
-  // Filter images for objectives and vision/mission
-  const visionMissionImages = images.filter(img => ["5", "6"].includes(img.caption))
-  .sort((a, b) => parseInt(a.caption) - parseInt(b.caption)); // Sort images by caption number
+  const visionMissionImages = images
+    .filter(img => ["5", "6"].includes(img.caption))
+    .sort((a, b) => parseInt(a.caption) - parseInt(b.caption));
 
   const objectivesItems = [
     {
@@ -74,12 +87,11 @@ const Page: React.FC = () => {
         "Provide medical support through awareness camps focusing on critical health issues, particularly for vulnerable groups such as senior citizens and school girls. Facilitate eye operations and general health check-ups to improve overall well-being in the community.",
     },
   ];
-  
-  // Fetch images from Sanity with captions "1", "2", "3", "4"
+
   const objectivesImages = images
     .filter(img => ["1", "2", "3", "4"].includes(img.caption))
-    .sort((a, b) => parseInt(a.caption) - parseInt(b.caption)); // Sort images by caption number
-  
+    .sort((a, b) => parseInt(a.caption) - parseInt(b.caption));
+
   return (
     <motion.div
       initial="initial"
@@ -88,7 +100,7 @@ const Page: React.FC = () => {
       variants={pageVariants}
       transition={{ duration: 0.5 }}
       className="space-y-8 p-0 max-w-full mx-auto MissionPage-page"
-      style={{ backgroundColor: "transparent" }} // Ensure no white background
+      style={{ backgroundColor: "transparent" }}
     >
       <Section
         title={
@@ -109,24 +121,25 @@ const Page: React.FC = () => {
           {objectivesItems.map((item, index) => (
             <div
               key={index}
-              className={`shadow-none transition-all duration-75 ease-in-out`}
+              className="shadow-none transition-all duration-75 ease-in-out"
               style={{
                 fontSize: "14px",
                 cursor: "pointer",
                 border: "none",
                 padding: "10px",
-              }} // Remove card styles
+              }}
             >
               <div className="mb-0 pl-2 pr-2 pt-2 pb-0">
-                <img
-                  src={objectivesImages[index]?.image} // Fetching the image based on the index
-                  alt={objectivesImages[index]?.title}
+                <Image
+                  src={objectivesImages[index]?.image || ""}
+                  alt={objectivesImages[index]?.alt || ""}
                   className="object-cover rounded-lg"
+                  width={600}
+                  height={180}
                   style={{
                     height: "180px",
                     width: "600px",
                     marginBottom: "15px",
-                    paddingBottom: "0px",
                     borderRadius: "15px",
                   }}
                 />
@@ -158,9 +171,7 @@ const Page: React.FC = () => {
         </p>
       </header>
 
-      {/* Updated Layout: Mission and Vision text on left, images on right */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-6">
-        {/* Left Side: Mission and Vision Content */}
         <div className="space-y-8 ml-12">
           <div>
             <h2
@@ -187,15 +198,15 @@ const Page: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: Vision and Mission Images */}
         <div className="grid grid-cols-2 gap-4 mr-8">
           {visionMissionImages.map((image, index) => (
-            <img
+            <Image
               key={index}
               src={image.image}
               alt={image.alt}
-              className="w-full object-cover rounded-lg"
-              style={{ height: "300px" }}
+              className="w-full h-[300px] object-cover rounded-lg"
+              width={600}
+              height={300}
             />
           ))}
         </div>
@@ -208,7 +219,7 @@ const Page: React.FC = () => {
               fontFamily: "Verdana, sans-serif",
               fontWeight: "bolder",
               fontSize: "25px",
-              textAlign:"center",
+              textAlign: "center",
               marginTop: "150px",
             }}
           >
@@ -234,7 +245,6 @@ const Page: React.FC = () => {
           </Card>
 
           <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out mt-0">
-            {" "} {/* Set mt-0 for the middle card */}
             <CardHeader>
               <CardTitle
                 className="text-xl text-center heading"
@@ -245,23 +255,23 @@ const Page: React.FC = () => {
             </CardHeader>
             <CardContent>
               <p className="poppins-paragraph text-center">
-                During the Covid-19 pandemic, OSS delivered food and essentials to over 200,000 individuals and families.
+                During the Covid-19 pandemic, OSS delivered food and essentials to over 200 households every week, ensuring no family went hungry.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out">
+          <Card className="shadow-lg border-2 hover:scale-105 hover:shadow-xl transition-all duration-75 ease-in-out mt-0">
             <CardHeader>
               <CardTitle
                 className="text-xl text-center heading"
                 style={{ fontSize: "22px" }}
               >
-                Healthcare Initiatives
+                Community Partnerships
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="poppins-paragraph text-center">
-                OSS organized free health camps, reaching over 10,000 beneficiaries with essential health services and check-ups.
+                Collaborated with local businesses and NGOs, enhancing our reach and resources to combat hunger in our area.
               </p>
             </CardContent>
           </Card>

@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Image from 'next/image'
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -51,10 +52,13 @@ export const Team = () => (
           {teamMembers.map((member, index) => (
             <Card key={index} className="shadow-lg hover:shadow-xl">
               <CardContent className="flex flex-col items-center p-4">
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 object-cover rounded-full mb-2" // Style the image
+                  width={128} // Define explicit width
+                  height={128} // Define explicit height
+                  className="rounded-full mb-2 object-cover" // Apply styles
+                  priority={index < 4} // Optional: give priority to the first few images
                 />
                 <h4 className="text-xl font-semibold">{member.name}</h4>
                 <p className="text-gray-500">{member.role}</p>

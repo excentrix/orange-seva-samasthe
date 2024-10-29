@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 interface Projectimg {
   _id: string;
@@ -164,15 +165,13 @@ const Projects: React.FC = () => {
                           <CarouselItem key={img._id}>
                             <Card className="relative overflow-hidden">
                               <CardContent className="p-0">
-                                <img
-                                  src={
-                                    urlFor(img.imageUrl)
-                                      .width(800)
-                                      .height(450)
-                                      .format("webp")
-                                      .quality(80)
-                                      .url() || ""
-                                  }
+                                <Image
+                                  src={urlFor(img.imageUrl)
+                                    .width(800)
+                                    .height(450)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url() || ""}
                                   loading="lazy"
                                   alt={img.alt}
                                   width={800}
@@ -211,15 +210,13 @@ const Projects: React.FC = () => {
                 layoutId={`img-${project._id}-${id}`}
                 className="w-full rounded-t-lg h-auto"
               >
-                <img
-                  src={
-                    urlFor(project.images[0].imageUrl)
-                      .width(400)
-                      .height(300)
-                      .format("webp")
-                      .quality(80)
-                      .url() || "/placeholder.jpg"
-                  }
+                <Image
+                  src={urlFor(project.images[0].imageUrl)
+                    .width(400)
+                    .height(300)
+                    .format("webp")
+                    .quality(80)
+                    .url() || "/placeholder.jpg"}
                   loading="lazy"
                   alt={project.images[0]?.alt || project.title}
                   width={400}

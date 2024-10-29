@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
 
+// Define a specific type for the callback function
+type Callback = (event: MouseEvent | TouchEvent) => void;
+
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement>,
-  callback: Function
+  callback: Callback
 ) => {
   useEffect(() => {
-    const listener = (event: any) => {
-      if (!ref.current || ref.current.contains(event.target)) {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      // Check if event.target is a Node before calling contains
+      const target = event.target as Node; // Cast to Node
+
+      if (!ref.current || ref.current.contains(target)) {
         return;
       }
+
       callback(event);
     };
 

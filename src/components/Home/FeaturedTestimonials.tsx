@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+
+interface Asset {
+  _ref: string; // Sanity asset reference
+  _type: string; // The type of the asset (e.g., image)
+}
 
 interface Image {
   _id: string;
-  image: any;
+  image: Asset; // Replace any with the Asset type
   alt: string;
 }
 
@@ -26,18 +32,18 @@ const FeaturedTestimonials: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false); // Add mounted state
 
   useEffect(() => {
+    const query = `*[_type == "testimonial"]{
+      _id,
+      name,
+      quote,
+      role,
+      image {
+        'image': asset._ref
+      }
+    }`; // Assign the query string to a variable
+
     const fetchTestimonials = async () => {
-      const data = await client.fetch(`
-        *[_type == "testimonial"]{
-          _id,
-          name,
-          quote,
-          role,
-          image{
-            'image': asset._ref
-          }
-        }
-      `);
+      const data = await client.fetch(query); // Use the query variable
       setTestimonials(data);
       setIsMounted(true); // Set mounted state to true after fetching data
     };
@@ -95,7 +101,7 @@ const FeaturedTestimonials: React.FC = () => {
         </div>
         <div className="w-full md:w-1/2">
           <div className="mb-4">
-            <img
+            <Image
               src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2F9c1d08050eb7db8d4704e1dad847a643.cdn.bubble.io%2Ff1700579357609x199102519413177470%2Ficon-park_quote.png?w=120&h=120&auto=compress&dpr=0.5&fit=max&fm=webp"
               alt="quote"
               width={120}
@@ -110,7 +116,7 @@ const FeaturedTestimonials: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-xl mb-6"
           >
-            "{currentTestimonial.quote}"
+            {currentTestimonial.quote}
           </motion.p>
           <motion.p
             key={`${currentTestimonial._id}-name`}

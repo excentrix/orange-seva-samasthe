@@ -2,12 +2,13 @@
 "use client"; // Indicate that this is a client component
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"; 
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
+import Image from 'next/image';
 
 const NotFound: React.FC = () => {
-  const router = useRouter(); 
+  const router = useRouter();
   const pageVariants = {
     initial: { opacity: 0, y: 50 },
     animate: { opacity: 1, y: 0 },
@@ -33,10 +34,12 @@ const NotFound: React.FC = () => {
           <p className="text-xl mb-6">
             Oops! It seems you've wandered off the path of service.
           </p>
-          <img
+          <Image
             src="/images/404-illustration.svg"
             alt="404 Illustration"
-            className="w-64 mx-auto mb-6"
+            width={256} 
+            height={256} 
+            className="w-64 mx-auto mb-6" 
           />
           <p className="mb-6">
             Don't worry, even detours can lead to new opportunities to help.

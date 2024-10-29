@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 const pageVariants = {
   initial: { opacity: 0, y: 50 },
@@ -27,7 +28,7 @@ interface TimelineItem {
 
 export const History = () => {
   const [timelineData, setTimelineData] = useState<TimelineItem[]>([]);
-  const [historyContent, setHistoryContent] = useState<string>("");
+  const [,setHistoryContent] = useState<string>("");
 
   useEffect(() => {
     const fetchTimelineData = async () => {
@@ -84,28 +85,30 @@ export const History = () => {
       </p>
       <div className="grid grid-cols-2 gap-4">
         {(item.images || []).map((image, index) => (
-          <figure key={index} className="relative">
-            <img
-              src={
-                urlFor(image.imageUrl)
-                  .width(500)
-                  .height(500)
-                  .format("webp")
-                  .quality(80)
-                  .url() || ""
-              }
-              loading="lazy"
-              alt={image.alt}
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            {image.caption && (
-              <figcaption className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-                {image.caption}
-              </figcaption>
-            )}
-          </figure>
+        <figure key={index} className="relative">
+        <Image
+          src={
+            urlFor(image.imageUrl)
+              .width(500)
+              .height(500)
+              .format("webp")
+              .quality(80)
+              .url() || ""
+          }
+          alt={image.alt}
+          width={500}
+          height={500}
+          layout="responsive" // Ensures the image is responsive
+          className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset"
+          priority={index === 0} // Only use priority on important images
+        />
+        {image.caption && (
+          <figcaption className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
+            {image.caption}
+          </figcaption>
+        )}
+      </figure>
+             
         ))}
       </div>
     </div>

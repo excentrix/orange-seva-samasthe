@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 interface CommunityImpactProps {
   title: string;
@@ -44,7 +45,7 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img
+          <Image
             src={
               urlFor(image.imageUrl)
                 .width(1120)
@@ -53,8 +54,10 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
                 .url() || ""
             }
             alt={image.alt}
-            loading="lazy"
-            className="w-full h-80 object-cover"
+            loading="lazy" // This prop can be omitted; Next.js handles lazy loading by default
+            width={1120} // Specify the width for optimization
+            height={450} // You can set the height according to your design (adjust as needed)
+            className="w-full h-80 object-cover" // Tailwind CSS classes
           />
         </motion.div>
       </div>

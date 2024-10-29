@@ -1,13 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import  { client }  from "@/sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 interface Image {
-  _id: string;
-  image: any;
-  alt: string;
+  asset: {
+    _id: string;
+    url: string; // Include the URL field
+  };
+  alt: string; // Alt text for the image
 }
 
 interface Testimonial {
@@ -15,7 +18,7 @@ interface Testimonial {
   name: string;
   quote: string;
   role: string;
-  image: Image;
+  image: Image; // Use the updated Image interface
 }
 
 const Testimonials: React.FC = () => {
@@ -23,21 +26,26 @@ const Testimonials: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true); // Track loading state
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      const data = await client.fetch(`
-        *[_type == "testimonial"]{
+    const query = `*[_type == "testimonial"]{
+      _id,
+      name,
+      quote,
+      role,
+      image {
+        asset -> {
           _id,
-          name,
-          quote,
-          role,
-          image{
-            'image': asset._ref
-          }
-        }
-      `);
+          url // Fetch the URL of the image asset
+        },
+        alt
+      }
+    }`;
+
+    const fetchTestimonials = async () => {
+      const data = await client.fetch(query); // Use the query variable here
       setTestimonials(data);
       setLoading(false); // Set loading to false after data is fetched
     };
+
     fetchTestimonials();
   }, []);
 
@@ -53,13 +61,13 @@ const Testimonials: React.FC = () => {
   }
 
   return (
-    <div className="bg-off-white py-16">
+    <div className="bg-off-white py-8">
       <div className="container mx-auto px-4">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="text-4xl font-bold text-center mb-8 mt-0"
         >
           Testimonials
         </motion.h1>
@@ -72,9 +80,9 @@ const Testimonials: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white rounded-lg shadow-lg overflow-hidden w-full items-center flex flex-col"
             >
-              {testimonial.image && (
-                <img
-                  src={urlFor(testimonial.image.image)
+              {testimonial.image && testimonial.image.asset && (
+                <Image
+                  src={urlFor(testimonial.image.asset.url)
                     .width(1000)
                     .height(1000)
                     .format("webp")
@@ -83,12 +91,14 @@ const Testimonials: React.FC = () => {
                     .url() || ''} // Ensure a fallback
                   alt={testimonial.image.alt || testimonial.name}
                   loading="lazy"
-                  className="w-64 h-64 object-fill rounded-lg mt-6"
+                  width={1000} // Specify the width
+                  height={1000} // Specify the height
+                  className="w-64 h-64 object-fill rounded-lg mt-6" // Tailwind CSS classes
                 />
               )}
               <div className="p-6">
                 <p className="text-gray-600 italic mb-4">
-                  "{testimonial.quote}"
+                  {testimonial.quote}
                 </p>
                 <p className="font-semibold text-right">- {testimonial.name}</p>
                 {testimonial.role && (

@@ -2,11 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
-import { client }  from "@/sanity/lib/client";
+import { client } from "@/sanity/lib/client";
+import Image from 'next/image';
 
+// Define the structure for the image object
 interface CustomImage {
   _id: string;
-  image: any;
+  image: {
+    asset: {
+      url: string; // Assuming the URL is a string
+    };
+  };
   alt: string;
   caption: string;
 }
@@ -20,7 +26,11 @@ const Gallery: React.FC = () => {
       const data = await client.fetch(`
         *[_type == "customImage"]{
           _id,
-          "image": image.asset->url,
+          image {
+            asset-> {
+              url
+            }
+          },
           alt,
           caption
         }
@@ -53,8 +63,8 @@ const Gallery: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative overflow-hidden rounded-lg shadow-md"
             >
-              <img
-                src={urlFor(image.image)
+              <Image
+                src={urlFor(image.image.asset.url)
                   .width(400)
                   .height(300)
                   .format("webp")
@@ -63,6 +73,8 @@ const Gallery: React.FC = () => {
                   .url()}
                 alt={image.alt || "Gallery image"}
                 loading="lazy"
+                width={400} // Specify the width here
+                height={300} // Specify the height here
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
               {image.caption && (

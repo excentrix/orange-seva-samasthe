@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image"; 
+// import Image from "next/image"; 
 import Head from "next/head"; // Import the Head component for <head> modifications
 
 // Dynamically import components to reduce initial load time
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
         `);
         setHomeData(data);
       } catch (err) {
-        setError("Failed to load data.");
+        setError(err instanceof Error ? err.message : "Failed to load data.");
       } finally {
         setLoading(false);
       }

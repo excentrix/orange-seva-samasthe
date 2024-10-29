@@ -13,11 +13,8 @@ interface HeroData {
   ctaText: string;
 }
 
-// HeroSection component props
-interface HeroProps extends HeroData {}
-
 // HeroSection component
-const HeroSection: React.FC<HeroProps> = ({
+const HeroSection: React.FC<HeroData> = ({
   title,
   subtitle,
   backgroundImage,
@@ -30,13 +27,13 @@ const HeroSection: React.FC<HeroProps> = ({
     .quality(80)
     .url();
 
-  const[isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  if(!isLoaded) return null;
+  if (!isLoaded) return null;
 
   return (
     <section className="relative h-screen" suppressHydrationWarning>
