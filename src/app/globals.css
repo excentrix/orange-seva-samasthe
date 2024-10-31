@@ -83,6 +83,13 @@
   .hero-opacity.visible {
     opacity: 1;
   }
+
+  /* .clamp-lines {
+    overflow: hidden; 
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 2;
+  } */
   
   @layer components {
     .poppins-paragraph {

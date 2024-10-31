@@ -24,6 +24,7 @@ interface Testimonial {
 const Testimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // Track loading state
+  const [isMounted, setIsMounted] = useState<boolean>(false); // Track if the component has mounted
 
   useEffect(() => {
     const query = `*[_type == "testimonial"]{
@@ -47,6 +48,7 @@ const Testimonials: React.FC = () => {
     };
 
     fetchTestimonials();
+    setIsMounted(true); // Mark the component as mounted
   }, []);
 
   // Render a loading state or a fallback UI while fetching data

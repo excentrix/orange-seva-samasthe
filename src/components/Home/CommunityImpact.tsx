@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { urlFor } from "@/sanity/lib/image";
 import Image from 'next/image';
+import { urlFor } from "@/sanity/lib/image";
 
 interface CommunityImpactProps {
   title: string;
@@ -16,15 +16,6 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
   title,
   image,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true); // Set to true after the component mounts
-  }, []);
-
-  // Suppress hydration warnings by rendering only after mounting
-  if (!isMounted) return null;
-
   return (
     <section className="py-16 relative">
       <div className="absolute top-0 left-0 right-0 h-4/6 bg-main"></div>
@@ -46,18 +37,12 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Image
-            src={
-              urlFor(image.imageUrl)
-                .width(1120)
-                .format("webp")
-                .quality(80)
-                .url() || ""
-            }
+            src={urlFor(image.imageUrl).width(1120).format("webp").quality(80).url()}
             alt={image.alt}
-            loading="lazy" // This prop can be omitted; Next.js handles lazy loading by default
-            width={1120} // Specify the width for optimization
-            height={450} // You can set the height according to your design (adjust as needed)
-            className="w-full h-80 object-cover" // Tailwind CSS classes
+            loading="lazy"
+            width={1120}
+            height={450}
+            className="w-full h-80 object-cover"
           />
         </motion.div>
       </div>

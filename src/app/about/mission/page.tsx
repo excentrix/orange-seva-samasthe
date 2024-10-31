@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import Image from "next/image"; // Import Image from next/image for optimized image handling
+import Image from "next/image"; 
 import { client } from "@/sanity/lib/client";
 
 const pageVariants = {
@@ -18,7 +18,6 @@ const sectionVariants = {
   animate: { opacity: 1, x: 0 },
 };
 
-// Specify Section props type
 interface SectionProps {
   title: React.ReactNode;
   children: React.ReactNode;
@@ -37,7 +36,6 @@ const Section: React.FC<SectionProps> = ({ title, children }) => (
   </motion.section>
 );
 
-// Define ImageItem type for images state
 interface ImageItem {
   _id: string;
   image: string;
@@ -55,7 +53,7 @@ const Page: React.FC = () => {
           "image": image.asset->url,
           alt,
           caption
-        }`); // Ensure this matches your requirements, including the asterisk changes
+        }`);
       setImages(data);
     };    
     fetchImages();
@@ -100,7 +98,6 @@ const Page: React.FC = () => {
       variants={pageVariants}
       transition={{ duration: 0.5 }}
       className="space-y-8 p-0 max-w-full mx-auto MissionPage-page"
-      style={{ backgroundColor: "transparent" }}
     >
       <Section
         title={

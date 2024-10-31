@@ -15,23 +15,27 @@ const Donate: React.FC = () => {
   return (
     <div className="bg-off-white">
       <div className="container px-4">
-        {isMounted && ( // Ensure animations only render on the client
+        {isMounted && (
           <motion.h1
+            key="donate-heading" // Use a constant string as the key
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            style={{ marginBottom: "20px", fontSize: "35px", paddingTop: "40px" }}
+            style={{ marginBottom: "20px", fontSize: "35px", paddingTop: "40px"}} 
+            // opacity: 1 
             className="font-bold text-center mb-8 text-gray-800"
           >
             Support Our Cause
           </motion.h1>
         )}
-        {isMounted && ( // Wrap the donation card in a mounted check
+        {isMounted && (
           <motion.div
+            key="donate-card" // Use a constant string as the key
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6"
+            // style={{ opacity: 1 }}
           >
             <p className="mb-4 text-center text-md text-gray-700">
               Your donation helps us continue our mission of serving the community. We appreciate your support!

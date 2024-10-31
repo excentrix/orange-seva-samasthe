@@ -1,6 +1,6 @@
 // pages/404.tsx
 "use client"; // Indicate that this is a client component
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,17 +9,24 @@ import Image from 'next/image';
 
 const NotFound: React.FC = () => {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+
   const pageVariants = {
     initial: { opacity: 0, y: 50 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -50 },
   };
 
+  // Set the mounted state to true after the component mounts
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <motion.div
       className="min-h-screen flex items-center justify-center bg-orange-50"
-      initial="initial"
-      animate="animate"
+      initial={isMounted ? "initial" : false} // Only animate after mounting
+      animate={isMounted ? "animate" : false} // Only animate after mounting
       exit="exit"
       variants={pageVariants}
       transition={{ duration: 0.5 }}
@@ -37,9 +44,9 @@ const NotFound: React.FC = () => {
           <Image
             src="/images/404-illustration.svg"
             alt="404 Illustration"
-            width={256} 
-            height={256} 
-            className="w-64 mx-auto mb-6" 
+            width={256}
+            height={256}
+            className="w-64 mx-auto mb-6"
           />
           <p className="mb-6">
             Don't worry, even detours can lead to new opportunities to help.

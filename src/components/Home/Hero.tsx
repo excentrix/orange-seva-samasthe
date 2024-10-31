@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
+ 
 // Define the interface for the Hero Data
 interface HeroData {
   title: string;

@@ -58,8 +58,8 @@ const Gallery: React.FC = () => {
           {images.map((image, index) => (
             <motion.div
               key={image._id}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.8 }} // Initial opacity set to 0
+              animate={{ opacity: 1, scale: 1 }} // Animate to full opacity
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative overflow-hidden rounded-lg shadow-md"
             >

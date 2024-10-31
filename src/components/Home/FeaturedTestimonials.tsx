@@ -70,9 +70,9 @@ const FeaturedTestimonials: React.FC = () => {
 
   return (
     <section className="py-16 px-4 md:px-8 max-w-4xl mx-auto relative">
-      <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
+      <h3 className="text-1xl md:text-4xl font-bold text-center mb-12">
         Impact Stories
-      </h2>
+      </h3>
       <Button
         variant="outline"
         className="absolute right-8 border-main text-main hover:bg-main hover:text-white z-10"
