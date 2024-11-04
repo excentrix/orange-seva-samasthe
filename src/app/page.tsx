@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
-// import Image from "next/image"; 
-import Head from "next/head"; // Import the Head component for <head> modifications
+import Head from "next/head";
 
-// Dynamically import components to reduce initial load time
 const FeaturedTestimonials = dynamic(() => import("@/components/Home/FeaturedTestimonials"), { ssr: false });
 const TransformingLives = dynamic(() => import("@/components/Home/TransformingLives"), { ssr: false });
 const MissionSection = dynamic(() => import("@/components/Home/Mission"), { ssr: false });
@@ -69,7 +67,6 @@ const Home: React.FC = () => {
   const [homeData, setHomeData] = useState<HomeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isMounted, setIsMounted] = useState(false); // Track mounted state
 
   useEffect(() => {
     const fetchHomeData = async () => {
@@ -125,13 +122,10 @@ const Home: React.FC = () => {
       }
     };
     fetchHomeData();
-
-    // Set mounted state to true after the initial render
-    setIsMounted(true);
   }, []);
 
-  if (loading) return <div>Loading...</div>; // Show loading state
-  if (error) return <div>{error}</div>; 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
   if (!homeData) return null;
 
   return (
@@ -142,16 +136,12 @@ const Home: React.FC = () => {
       </Head>
       <div suppressHydrationWarning className="bg-gray-50 min-h-screen w-full">
         <Suspense fallback={<div>Loading components...</div>}>
-          {isMounted && ( // Only render components after mounted
-            <>
-              <HeroSection {...homeData.hero} />
-              <MissionSection {...homeData.mission} />
-              <ImpactStats {...homeData.impactStats} />
-              <TransformingLives {...homeData.transformingLives} />
-              <CommunityImpactSection {...homeData.communityImpact} />
-              <FeaturedTestimonials />
-            </>
-          )}
+          <HeroSection {...homeData.hero} />
+          <MissionSection {...homeData.mission} />
+          <ImpactStats {...homeData.impactStats} />
+          <TransformingLives {...homeData.transformingLives} />
+          <CommunityImpactSection {...homeData.communityImpact} />
+          <FeaturedTestimonials />
         </Suspense>
       </div>
     </>

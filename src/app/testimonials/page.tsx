@@ -24,7 +24,7 @@ interface Testimonial {
 const Testimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // Track loading state
-  const [isMounted, setIsMounted] = useState<boolean>(false); // Track if the component has mounted
+  const [, setIsMounted] = useState<boolean>(false); // Track if the component has mounted
 
   useEffect(() => {
     const query = `*[_type == "testimonial"]{

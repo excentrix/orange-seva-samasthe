@@ -1,10 +1,9 @@
-// pages/404.tsx
 "use client"; // Indicate that this is a client component
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Change the import path here
 import Image from 'next/image';
 
 const NotFound: React.FC = () => {
@@ -39,7 +38,7 @@ const NotFound: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="text-xl mb-6">
-            Oops! It seems you've wandered off the path of service.
+            Oops! It seems you'&apos;'ve wandered off the path of service.
           </p>
           <Image
             src="/images/404-illustration.svg"
@@ -49,8 +48,8 @@ const NotFound: React.FC = () => {
             className="w-64 mx-auto mb-6"
           />
           <p className="mb-6">
-            Don't worry, even detours can lead to new opportunities to help.
-            Let's get you back on track to making a difference.
+            Don'&apos;'t worry, even detours can lead to new opportunities to help.
+            Let'&apos;'s get you back on track to making a difference.
           </p>
           <div className="space-y-4">
             <Button

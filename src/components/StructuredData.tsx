@@ -1,6 +1,5 @@
 // src/components/StructuredData.tsx
-import { Head } from "next/document";
-
+import Head from "next/head"; // Correct the import to use next/head
 
 interface StructuredDataProps {
   type: "Organization" | "NGO";

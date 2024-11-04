@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { client, urlFor } from "@/lib/sanity";
 
-// Define a more specific type for the image property
 interface CustomImage {
   _id: string;
-  image: string; // Update to string since you're fetching a URL
+  image: any;
   alt: string;
   caption: string;
 }
