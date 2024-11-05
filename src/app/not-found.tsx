@@ -38,7 +38,7 @@ const NotFound: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="text-xl mb-6">
-            Oops! It seems you'&apos;'ve wandered off the path of service.
+            Oops! It seems you&apos;ve wandered off the path of service.
           </p>
           <Image
             src="/images/404-illustration.svg"
@@ -48,8 +48,8 @@ const NotFound: React.FC = () => {
             className="w-64 mx-auto mb-6"
           />
           <p className="mb-6">
-            Don'&apos;'t worry, even detours can lead to new opportunities to help.
-            Let'&apos;'s get you back on track to making a difference.
+            Don&apos;t worry, even detours can lead to new opportunities to help.
+            Let&apos;s get you back on track to making a difference.
           </p>
           <div className="space-y-4">
             <Button
