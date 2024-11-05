@@ -1,4 +1,5 @@
-"use client";
+"use client"; 
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
@@ -22,11 +23,11 @@ interface TimelineItem {
   _id: string;
   title: string;
   content: string;
-  year?: number; // Mark as optional
+  year?: number; 
   images: CustomImage[];
 }
 
-export const History = () => {
+const History = () => {
   const [timelineData, setTimelineData] = useState<TimelineItem[]>([]);
   const [, setHistoryContent] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
@@ -137,4 +138,4 @@ export const History = () => {
   );
 };
 
-export default History;
+export default History; 

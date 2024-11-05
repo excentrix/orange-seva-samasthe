@@ -34,7 +34,7 @@ const teamMembers = [
   },
 ];
 
-export const Team = () => {
+const Team = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -79,8 +79,7 @@ export const Team = () => {
             ))}
           </div>
           <p className="mt-4 mb-4 pt-10 flex flex-col items-center">
-            Our strength lies in our volunteer network of over 100 active members
-            from diverse backgrounds.
+            Our strength lies in our volunteer network of over 100 active members from diverse backgrounds.
           </p>
         </CardContent>
       </Card>
@@ -88,4 +87,4 @@ export const Team = () => {
   );
 };
 
-export default Team;
+export default Team; // Ensure this is the default export
