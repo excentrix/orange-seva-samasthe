@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -41,7 +41,7 @@ const History = () => {
         "history": *[_type == "history"] {
           content
         },
-        "timeline": *[_type == "timeline"] | order(order asc) {
+        "timeline": *[_type == "timeline"] | order(title asc) {
           _id,
           title,
           content,
@@ -58,15 +58,18 @@ const History = () => {
       try {
         const result = await client.fetch(query);
 
-        console.log("Fetched data:", result);
+        // Log the entire result object to inspect its structure
+        console.log("Result from Sanity:", result);
 
-        if (result.history.length > 0) {
+        // Check if history content is available
+        if (result.history && result.history.length > 0) {
           setHistoryContent(result.history[0].content);
         } else {
           console.warn("No history content found.");
         }
 
-        if (result.timeline) {
+        // Check if timeline data is available
+        if (result.timeline && result.timeline.length > 0) {
           setTimelineData(result.timeline);
         } else {
           console.warn("No timeline data found.");
@@ -116,7 +119,7 @@ const History = () => {
 
   const formattedData = [
     ...timelineData.map((item) => ({
-      title: item.year ? `${item.year}: ${item.title}` : item.title,
+      title: `${item.title}: ${item.year || ""}`, // Displaying the title along with the year, if present
       content: renderContent(item),
     })),
   ];
@@ -138,4 +141,4 @@ const History = () => {
   );
 };
 
-export default History; 
+export default History;
