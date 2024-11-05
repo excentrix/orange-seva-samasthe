@@ -164,7 +164,7 @@ const Page: React.FC = () => {
           className="text-center poppins-paragraph text-md"
           style={{ fontSize: "26px", marginTop: "120px", marginBottom: "90px" }}
         >
-          "Together, we nourish."
+          &quot;Together, we nourish.&quot;
         </p>
       </header>
 

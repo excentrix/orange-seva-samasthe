@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image"; // Import the Image component from Next.js
 import { client, urlFor } from "@/lib/sanity";
+
+// Correcting the structure for ImageAsset
+interface ImageAsset {
+  _type: "image"; // Specify that this is an image type
+  asset: {
+    _ref: string; // Reference to the asset in Sanity
+  };
+}
 
 interface CustomImage {
   _id: string;
-  image: any;
+  image: ImageAsset; // The image property is now an ImageAsset
   alt: string;
   caption: string;
 }
@@ -17,7 +26,12 @@ const Gallery: React.FC = () => {
       const data = await client.fetch(`
         *[_type == "customImage"]{
           _id,
-          "image": image.asset->url,
+          image {
+            _type,
+            asset -> {
+              _ref
+            }
+          },
           alt,
           caption
         }
@@ -47,17 +61,14 @@ const Gallery: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative overflow-hidden rounded-lg shadow-md"
             >
-              <img
-                src={urlFor(image.image)
-                  .width(400)
-                  .height(300)
-                  .format("webp")
-                  .quality(80)
-                  .fit("crop")
-                  .url()}
+              <Image
+                src={urlFor(image.image).url()} // Use the urlFor function to get the image URL
                 alt={image.alt || "Gallery image"}
+                layout="responsive" // Adjust layout as needed
+                width={400} // Specify width
+                height={300} // Specify height
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                className="transition-transform duration-300 hover:scale-110" // You can style this in CSS instead
               />
               {image.caption && (
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm">
