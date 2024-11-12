@@ -11,14 +11,12 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 
 interface TransformationCard {
-  title: string;
-  description: string;
   image: {
     imageUrl: string;
-    caption: string;
     alt: string;
   };
 }
+
 interface TransformingLivesProps {
   title: string;
   cards: TransformationCard[];
@@ -44,6 +42,7 @@ const itemVariants = {
     },
   },
 };
+
 const TransformingLives: React.FC<TransformingLivesProps> = ({
   title,
   cards,
@@ -80,16 +79,49 @@ const TransformingLives: React.FC<TransformingLivesProps> = ({
                   }
                   loading="lazy"
                   alt={card.image.alt}
-                  width={800} // Specify the width
-                  height={240} // Specify the height (60 * 800 / width for the aspect ratio)
+                  width={800}
+                  height={240}
                   className="w-full h-60 object-cover rounded-xl"
                 />
-                <CardHeader>
-                  <CardTitle className="font-bold ">{card.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{card.description}</CardDescription>
-                </CardContent>
+                
+                {index === 0 && (
+                  <>
+                    <CardHeader>
+                      <CardTitle className="font-bold">Nourishing Lives</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        OSS provides nutritional aid individuals in need by redistributing surplus food from events like weddings and parties. From this initiative to turn excess food into essential support we have served over 20,000 needy people from the past few years.
+                      </CardDescription>
+                    </CardContent>
+                  </>
+                )}
+                
+                {index === 1 && (
+                  <>
+                    <CardHeader>
+                      <CardTitle className="font-bold">Empowering Health</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        At OSS, we regularly conduct health camps in rural areas around Mysuru and Chamarajanagar. These camps primarily focus on raising cancer awareness, advice on eye operations, and of course general check-ups. We also hold sessions in government schools, particularly for girls, to promote awareness about menstrual health, during which we have distributed over 4,000 sanitary pads.
+                      </CardDescription>
+                    </CardContent>
+                  </>
+                )}
+                
+                {index === 2 && (
+                  <>
+                    <CardHeader>
+                      <CardTitle className="font-bold">Inspiring Change</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        To strive for a Drug-Free Tomorrow, OSS conducts Drug Awareness program regularly in colleges emphasising on its ill effects on mental and physical health under “Nasha Mukta Bharatha Abiyana”. Until now we have successfully conducted in over 10 colleges in and around Mysuru.
+                      </CardDescription>
+                    </CardContent>
+                  </>
+                )}
               </Card>
             </motion.div>
           ))}

@@ -6,20 +6,14 @@ import { urlFor } from "@/sanity/lib/image";
  
 // Define the interface for the Hero Data
 interface HeroData {
-  title: string;
-  subtitle: string;
   backgroundImage: {
     imageUrl: string;
   };
-  ctaText: string;
 }
 
 // HeroSection component
 const HeroSection: React.FC<HeroData> = ({
-  title,
-  subtitle,
   backgroundImage,
-  ctaText,
 }) => {
   // Generate the client image URL
   const clientImage = urlFor(backgroundImage.imageUrl)
@@ -37,7 +31,7 @@ const HeroSection: React.FC<HeroData> = ({
   if (!isLoaded) return null;
 
   return (
-    <section className="relative h-screen" suppressHydrationWarning>
+    <section className="relative h-screen">
       {clientImage && (
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -48,7 +42,7 @@ const HeroSection: React.FC<HeroData> = ({
         </div>
       )}
 
-      <div className="relative z-10 h-full flex flex-col" suppressHydrationWarning>
+      <div className="relative z-10 h-full flex flex-col">
         <div className="flex-grow flex items-center justify-center px-6 md:px-12">
           <motion.div
             className="max-w-3xl text-left"
@@ -57,13 +51,17 @@ const HeroSection: React.FC<HeroData> = ({
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              {title}
+              Nourishing Lives, Empowering Communities
             </h1>
-            <p className="text-xl text-white mb-8">{subtitle}</p>
+            <p className="text-xl text-white mb-8">
+              
+              OSS aims to improve lives and strengthen communities by providing support, resources and opportunities for everyone in need.
+              </p>
             <Link href="/donate" passHref legacyBehavior>
-              <a className="bg-main hover:bg-orange-600 text-white font-semibold tracking-wide text-lg px-8 py-2 rounded inline-block">
-                {ctaText}
-              </a>
+              <button className="bg-main hover:bg-orange-600 text-white font-semibold tracking-wide text-lg px-8 py-2 rounded inline-block">
+                
+                MAKE A DONATION
+              </button>
             </Link>
           </motion.div>
         </div>
@@ -76,12 +74,9 @@ const HeroSection: React.FC<HeroData> = ({
 async function fetchDataFromSanity(): Promise<HeroData> {
   // Replace this with your actual data fetching logic
   return {
-    title: "Your Hero Title",
-    subtitle: "Your subtitle goes here.",
     backgroundImage: {
       imageUrl: "your-background-image-url",
     },
-    ctaText: "Call to Action Text",
   };
 }
 
@@ -91,10 +86,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      title: heroData.title,
-      subtitle: heroData.subtitle,
       backgroundImage: heroData.backgroundImage,
-      ctaText: heroData.ctaText,
     },
   };
 }

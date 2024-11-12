@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             height={32} // Set the desired height
             className="w-8 h-8 sm:w-12 sm:h-12" // Tailwind CSS classes
           />
-          <h1 className="hidden sm:inline">Orange Seva Samsthe</h1>
+          <h2 className="hidden sm:inline">Orange Seva Samsthe</h2>
         </Link>
 
         {/* Mobile menu button */}

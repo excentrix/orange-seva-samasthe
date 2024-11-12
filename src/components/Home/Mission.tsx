@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 interface MissionProps {
-  title: string;
-  description: string;
   images: {
     imageUrl: string;
     caption: string;
@@ -14,22 +12,9 @@ interface MissionProps {
   }[];
 }
 
-const MissionSection: React.FC<MissionProps> = ({ title, description, images }) => {
-  const [isClient, setIsClient] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    // Only set to true on the client-side to ensure NextRouter is mounted
-    setIsClient(true);
-  }, []);
-
-  const handleLearnClick = () => {
-    // Ensure router push only happens if client is true
-    if (isClient) {
-      router.push('/about/mission');
-    }
-  };
-
+const MissionSection: React.FC<MissionProps> = ({
+  images,
+}) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,27 +47,35 @@ const MissionSection: React.FC<MissionProps> = ({ title, description, images }) 
       >
         <div className="lg:w-3/5 grid grid-cols-2 gap-4">
           {images.map((image, index) => (
-            <motion.div key={index} className="relative w-full h-0 pb-[100%]"> {/* Aspect Ratio Box */}
-              <motion.img
-                src={urlFor(image.imageUrl).height(600).format("webp").quality(80).url() || ""}
-                loading="lazy"
-                alt={image.alt}
-                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale"
-                style={{ objectFit: 'cover' }} // Ensures the image covers the div
-                variants={itemVariants}
-              />
-            </motion.div>
+            <motion.img
+              key={index}
+              src={
+                urlFor(image.imageUrl)
+                  .height(600)
+                  .format("webp")
+                  .quality(80)
+                  .url() || ""
+              }
+              loading="lazy"
+              alt={image.alt}
+              className="w-full h-full object-cover rounded-lg grayscale first:row-span-2"
+              variants={itemVariants}
+            />
           ))}
         </div>
+
         <motion.div className="lg:w-2/5" variants={itemVariants}>
-          <h2 className="text-4xl md:text-4xl font-bold mb-4">{title}</h2>
-          <p className="text-gray-600 mb-6">{description}</p>
+          <h2 className="text-4xl md:text-4xl font-bold mb-4">
+            Our Mission is to "Nourish, Educate and Empower"
+          </h2>
+          <p className="text-gray-600 mb-6">
+            To build communities where surplus food nourishes the needy, health awareness grows, and young people pick healthy choices instead of addictions
+          </p>
           <Button
             variant="outline"
             className="border-main text-main hover:bg-main hover:text-white"
-            onClick={handleLearnClick}
           >
-            Click to learn
+            <Link href="/mission">Click to learn</Link>
           </Button>
         </motion.div>
       </motion.div>
