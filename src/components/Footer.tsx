@@ -26,7 +26,7 @@ const LinkedInIcon = () => (
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-r from-main to-blue-accent text-white" style={{marginTop:'20px', padding:'0px 15px'}}>
+    <footer className="py-12 mt-8 bg-gradient-to-r from-main to-blue-accent text-white">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start">
         <div className="md:w-1/2 text-center md:text-left mb-6 md:mb-0">
           <p className="text-xl font-semibold mb-2 underline ml-60">Contact</p>
