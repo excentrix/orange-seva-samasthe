@@ -57,19 +57,17 @@ const Impact = () => {
     setIsMounted(true);
   }, []);
 
-  // Close detail box when clicked outside
   useOutsideClick(detailBoxRef, () => setActiveCardIndex(null));
 
   useEffect(() => {
     if (activeCardIndex !== null) {
-      document.body.style.overflow = 'hidden'; // Disable scrolling
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = ''; // Enable scrolling
+      document.body.style.overflow = '';
     }
 
-    // Clean up on unmount
     return () => {
-      document.body.style.overflow = ''; // Ensure scrolling is enabled when component unmounts
+      document.body.style.overflow = ''; 
     };
   }, [activeCardIndex]);
 

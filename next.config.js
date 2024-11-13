@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Uncomment the lines below if you want to disable Turbopack
   experimental: {
-    turbo: {}, // Disable Turbopack
+    turbo: {}, 
   },
   images: {
     remotePatterns: [
       {
-        // Specify the domains and any additional settings if necessary
-        protocol: 'https', // Assuming your images are served over HTTPS
+        protocol: 'https', 
         hostname: 'cdn.sanity.io',
         port: '',
         pathname: '/**',
@@ -21,11 +19,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'd1muf25xaso8hp.cloudfront.net',
+        hostname: '9c1d08050eb7db8d4704e1dad847a643.cdn.bubble.io',
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'd1muf25xaso8hp.cloudfront.net',
+        port: '',
+        pathname: '/**', 
+      },
     ],
+    deviceSizes: [640, 750, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
 };
 

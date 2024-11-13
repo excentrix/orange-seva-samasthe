@@ -3,29 +3,23 @@
 import React, { useEffect, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-
-const FeaturedTestimonials = dynamic(() => import("@/components/Home/FeaturedTestimonials"), { ssr: false });
-const TransformingLives = dynamic(() => import("@/components/Home/TransformingLives"), { ssr: false });
-const MissionSection = dynamic(() => import("@/components/Home/Mission"), { ssr: false });
-const ImpactStats = dynamic(() => import("@/components/Home/ImpactStats"), { ssr: false });
-const HeroSection = dynamic(() => import("@/components/Home/Hero"), { ssr: false });
-const CommunityImpactSection = dynamic(() => import("@/components/Home/CommunityImpact"), { ssr: false });
-
 import { client } from "@/sanity/lib/client";
+
+const FeaturedTestimonials = dynamic(() => import("@/components/Home/FeaturedTestimonials"), { ssr: true });
+const TransformingLives = dynamic(() => import("@/components/Home/TransformingLives"), { ssr: true });
+const MissionSection = dynamic(() => import("@/components/Home/Mission"), { ssr: true });
+const ImpactStats = dynamic(() => import("@/components/Home/ImpactStats"), { ssr: true });
+const HeroSection = dynamic(() => import("@/components/Home/Hero"), { ssr: true });
+const CommunityImpactSection = dynamic(() => import("@/components/Home/CommunityImpact"), { ssr: true });
 
 interface HomeData {
   hero: {
-    title: string;
-    subtitle: string;
     backgroundImage: {
       imageUrl: string;
       alt: string;
     };
-    ctaText: string;
   };
   mission: {
-    title: string;
-    description: string;
     images: {
       imageUrl: string;
       caption: string;
@@ -42,10 +36,7 @@ interface HomeData {
     }[];
   };
   transformingLives: {
-    title: string;
     cards: {
-      title: string;
-      description: string;
       image: {
         imageUrl: string;
         caption: string;
@@ -54,7 +45,6 @@ interface HomeData {
     }[];
   };
   communityImpact: {
-    title: string;
     image: {
       imageUrl: string;
       caption: string;
@@ -74,17 +64,11 @@ const Home: React.FC = () => {
         const data = await client.fetch(`
           *[_type == "homePage"][0]{
             hero{
-              title,
-              subtitle,
               backgroundImage->{
-                "imageUrl": image.asset->url,
-                alt
+                "imageUrl": image.asset->url, alt
               },
-              ctaText
             },
             mission{
-              title,
-              description,
               "images": images[]->{
                 "imageUrl": image.asset->url,
                 alt,
@@ -93,7 +77,6 @@ const Home: React.FC = () => {
             },
             impactStats,
             transformingLives{
-              title,
               cards[] {
                 title,
                 description,
@@ -105,7 +88,6 @@ const Home: React.FC = () => {
               }
             },
             communityImpact{
-              title,
               "image": image->{
                 "imageUrl": image.asset->url,
                 alt,
@@ -139,7 +121,7 @@ const Home: React.FC = () => {
           <HeroSection {...homeData.hero} />
           <MissionSection {...homeData.mission} />
           <ImpactStats {...homeData.impactStats} />
-          <TransformingLives {...homeData.transformingLives} />
+          <TransformingLives title={""} {...homeData.transformingLives} />
           <CommunityImpactSection {...homeData.communityImpact} />
           <FeaturedTestimonials />
         </Suspense>

@@ -33,7 +33,7 @@ const History = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Component is mounted
+    setIsMounted(true); 
 
     const fetchTimelineData = async () => {
       const query = `
@@ -58,17 +58,14 @@ const History = () => {
       try {
         const result = await client.fetch(query);
 
-        // Log the entire result object to inspect its structure
         console.log("Result from Sanity:", result);
 
-        // Check if history content is available
         if (result.history && result.history.length > 0) {
           setHistoryContent(result.history[0].content);
         } else {
           console.warn("No history content found.");
         }
 
-        // Check if timeline data is available
         if (result.timeline && result.timeline.length > 0) {
           setTimelineData(result.timeline);
         } else {
@@ -119,14 +116,14 @@ const History = () => {
 
   const formattedData = [
     ...timelineData.map((item) => ({
-      title: `${item.title}: ${item.year || ""}`, // Displaying the title along with the year, if present
+      title: `${item.title}: ${item.year || ""}`, 
       content: renderContent(item),
     })),
   ];
 
   return (
     <>
-      {isMounted && ( // Conditionally render the motion div after mounting
+      {isMounted && ( 
         <motion.div
           className="w-full"
           initial="initial"

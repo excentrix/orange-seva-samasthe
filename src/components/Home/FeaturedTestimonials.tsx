@@ -8,13 +8,13 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 
 interface Asset {
-  _ref: string; // Sanity asset reference
+  _ref: string; 
   _type: string; // The type of the asset (e.g., image)
 }
 
 interface Image {
   _id: string;
-  image: Asset; // Replace any with the Asset type
+  image: Asset; 
   alt: string;
 }
 
@@ -40,12 +40,12 @@ const FeaturedTestimonials: React.FC = () => {
       image {
         'image': asset._ref
       }
-    }`; // Assign the query string to a variable
+    }`; 
 
     const fetchTestimonials = async () => {
-      const data = await client.fetch(query); // Use the query variable
+      const data = await client.fetch(query); 
       setTestimonials(data);
-      setIsMounted(true); // Set mounted state to true after fetching data
+      setIsMounted(true);
     };
 
     fetchTestimonials();
@@ -63,7 +63,6 @@ const FeaturedTestimonials: React.FC = () => {
     );
   };
 
-  // Suppress hydration warnings by rendering only after mounting
   if (!isMounted || testimonials.length === 0) return null;
 
   const currentTestimonial = testimonials[currentIndex];
@@ -85,7 +84,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.img
             key={currentTestimonial._id}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }} // Animate based on mount state
+            animate={{ opacity: 1 }} 
             transition={{ duration: 0.5 }}
             loading="lazy"
             src={urlFor(currentTestimonial.image.image)
@@ -112,7 +111,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={currentTestimonial._id}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }} // Animate based on mount state
+            animate={{ opacity: 1 }} 
             transition={{ duration: 0.5 }}
             className="text-xl mb-6"
           >
@@ -121,7 +120,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={`${currentTestimonial._id}-name`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }} // Animate based on mount state
+            animate={{ opacity: 1 }} 
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-bold text-xl text-main"
           >
@@ -130,7 +129,7 @@ const FeaturedTestimonials: React.FC = () => {
           <motion.p
             key={`${currentTestimonial._id}-role`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }} // Animate based on mount state
+            animate={{ opacity: 1 }} 
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-gray-400 text-lg"
           >

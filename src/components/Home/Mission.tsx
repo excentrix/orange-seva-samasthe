@@ -37,7 +37,7 @@ const MissionSection: React.FC<MissionProps> = ({
   };
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
+    <section className="md:px-8 lg:px-16 bg-white" style={{padding:'64px 16px 64px 16px'}}>
       <motion.div
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8"
         initial="hidden"

@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Afacad+Flux:wght@400&family=Noto+Sans:wght@400;700&family=Slabo+13px&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -74,39 +71,21 @@
   body {
     @apply bg-background text-foreground;
   }
-  
-  .hero-opacity {
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-  }
-  
-  .hero-opacity.visible {
-    opacity: 1;
+
+  .poppins-paragraph {
+    font-family: 'Poppins', sans-serif;
   }
 
-  /* .clamp-lines {
-    overflow: hidden; 
-    display: -webkit-box; 
-    -webkit-box-orient: vertical; 
-    -webkit-line-clamp: 2;
-  } */
-  
-  @layer components {
-    .poppins-paragraph {
-      font-family: 'Poppins', sans-serif;
-    }
+  .afacad-flux {
+    font-family: 'Afacad Flux', sans-serif;
+    font-weight: 400;
+  }
 
-    .afacad-flux {
-      font-family: 'Afacad Flux', sans-serif;
-      font-weight: 400;
-    }
+  .noto-sans {
+    font-family: 'Noto Sans', sans-serif;
+  }
 
-    .heading {
-      font-family: 'Verdana', sans-serif;
-    }
-
-    .nav-font {
-      font-family: 'Slabo 13px', serif;
-    }
+  .nav-font {
+    font-family: 'Slabo 13px', serif;
   }
 }

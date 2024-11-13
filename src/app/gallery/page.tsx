@@ -5,12 +5,11 @@ import { urlFor } from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 import Image from 'next/image';
 
-// Define the structure for the image object
 interface CustomImage {
   _id: string;
   image: {
     asset: {
-      url: string; // Assuming the URL is a string
+      url: string; 
     };
   };
   alt: string;
@@ -38,13 +37,13 @@ const Gallery: React.FC = () => {
       setImages(data);
     };
     fetchImages();
-    setIsMounted(true); // Set mounted state to true after the component has mounted
+    setIsMounted(true); 
   }, []);
 
   return (
     <div className="bg-gray-100 py-16">
       <div className="container mx-auto px-4">
-        {isMounted && ( // Ensure animations only render on the client
+        {isMounted && ( 
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,8 +57,8 @@ const Gallery: React.FC = () => {
           {images.map((image, index) => (
             <motion.div
               key={image._id}
-              initial={{ opacity: 0, scale: 0.8 }} // Initial opacity set to 0
-              animate={{ opacity: 1, scale: 1 }} // Animate to full opacity
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative overflow-hidden rounded-lg shadow-md"
             >
@@ -73,8 +72,8 @@ const Gallery: React.FC = () => {
                   .url()}
                 alt={image.alt || "Gallery image"}
                 loading="lazy"
-                width={400} // Specify the width here
-                height={300} // Specify the height here
+                width={400} 
+                height={300} 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
               {image.caption && (

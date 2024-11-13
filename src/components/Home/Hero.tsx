@@ -3,19 +3,16 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
- 
-// Define the interface for the Hero Data
 interface HeroData {
   backgroundImage: {
     imageUrl: string;
   };
 }
 
-// HeroSection component
 const HeroSection: React.FC<HeroData> = ({
   backgroundImage,
 }) => {
-  // Generate the client image URL
+
   const clientImage = urlFor(backgroundImage.imageUrl)
     .width(1920)
     .format("webp")
@@ -37,7 +34,6 @@ const HeroSection: React.FC<HeroData> = ({
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${clientImage})` }}
         >
-          {/* Overlay for better text visibility */}
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
       )}
@@ -70,9 +66,7 @@ const HeroSection: React.FC<HeroData> = ({
   );
 };
 
-// Mock data-fetching function
 async function fetchDataFromSanity(): Promise<HeroData> {
-  // Replace this with your actual data fetching logic
   return {
     backgroundImage: {
       imageUrl: "your-background-image-url",
