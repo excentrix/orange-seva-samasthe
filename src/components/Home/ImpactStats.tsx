@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { CreditCard, Heart, Megaphone } from "lucide-react";
@@ -23,6 +23,12 @@ const iconMap: { [key: string]: React.ReactNode } = {
 };
 
 const ImpactStats: React.FC<ImpactStatsProps> = ({ title, stats }) => {
+  const [isMounted, setIsMounted] = useState(false); // Add mounted state
+
+  useEffect(() => {
+    setIsMounted(true); // Set mounted state to true after component mounts
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,19 +72,21 @@ const ImpactStats: React.FC<ImpactStatsProps> = ({ title, stats }) => {
                 <CardContent className="flex items-center p-10 justify-evenly">
                   {iconMap[stat.icon]}
                   <div className="flex flex-col h-full">
-                    <p className="text-4xl font-bold">
-                      <CountUp
-                        start={0}
-                        end={stat.value}
-                        duration={2}
-                        useEasing
-                        enableScrollSpy
-                        scrollSpyOnce
-                        suffix={stat.prefix}
-                      >
-                        {({ countUpRef }) => <span ref={countUpRef} />}
-                      </CountUp>
-                    </p>
+                    {isMounted && ( // Only render CountUp after mounted
+                      <p className="text-4xl font-bold">
+                        <CountUp
+                          start={0}
+                          end={stat.value}
+                          duration={2}
+                          useEasing
+                          enableScrollSpy
+                          scrollSpyOnce
+                          suffix={stat.prefix}
+                        >
+                          {({ countUpRef }) => <span ref={countUpRef} />}
+                        </CountUp>
+                      </p>
+                    )}
                     <p className="text-gray-600">{stat.label}</p>
                   </div>
                 </CardContent>

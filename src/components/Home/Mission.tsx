@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 interface MissionProps {
-  title: string;
-  description: string;
   images: {
     imageUrl: string;
     caption: string;
@@ -15,8 +13,6 @@ interface MissionProps {
 }
 
 const MissionSection: React.FC<MissionProps> = ({
-  title,
-  description,
   images,
 }) => {
   const containerVariants = {
@@ -41,7 +37,7 @@ const MissionSection: React.FC<MissionProps> = ({
   };
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
+    <section className="md:px-8 lg:px-16 bg-white" style={{padding:'64px 16px 64px 16px'}}>
       <motion.div
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8"
         initial="hidden"
@@ -67,14 +63,19 @@ const MissionSection: React.FC<MissionProps> = ({
             />
           ))}
         </div>
+
         <motion.div className="lg:w-2/5" variants={itemVariants}>
-          <h2 className="text-4xl md:text-4xl font-bold mb-4">{title}</h2>
-          <p className="text-gray-600 mb-6">{description}</p>
+          <h2 className="text-4xl md:text-4xl font-bold mb-4">
+            Our Mission is to "Nourish, Educate and Empower"
+          </h2>
+          <p className="text-gray-600 mb-6">
+            To build communities where surplus food nourishes the needy, health awareness grows, and young people pick healthy choices instead of addictions
+          </p>
           <Button
             variant="outline"
             className="border-main text-main hover:bg-main hover:text-white"
           >
-            <Link href="/Mission">Learn More</Link>
+            <Link href="/mission">Click to learn</Link>
           </Button>
         </motion.div>
       </motion.div>

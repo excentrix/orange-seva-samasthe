@@ -1,64 +1,66 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date().toISOString(); // Use ISO string for consistency
+
   return [
     {
       url: "https://orangeseva.in",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/about/mission",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/about/impact",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/about/team",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/about/history",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/contact",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/donate",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/testimonials",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/gallery",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://orangeseva.in/projects",
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
     },

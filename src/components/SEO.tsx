@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 
 interface SEOProps {
   title: string;
@@ -8,9 +8,8 @@ interface SEOProps {
 
 const SEO = ({ title, description, keywords }: SEOProps) => {
   return (
-    <Helmet>
+    <Head>
       <title>{title}</title>
-      <meta name="description" content={description} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta property="og:title" content={title} />
@@ -22,7 +21,7 @@ const SEO = ({ title, description, keywords }: SEOProps) => {
         content={"https://www.orangeseva.in/media/logo.jpg"}
       />
       <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
+    </Head>
   );
 };
 

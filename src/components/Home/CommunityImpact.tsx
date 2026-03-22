@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Image from 'next/image';
 import { urlFor } from "@/sanity/lib/image";
 
 interface CommunityImpactProps {
-  title: string;
   image: {
     imageUrl: string;
     caption: string;
@@ -12,7 +12,6 @@ interface CommunityImpactProps {
 }
 
 const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
-  title,
   image,
 }) => {
   return (
@@ -26,7 +25,7 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {title}
+          We've helped over 200 vulnerable communities
         </motion.h2>
 
         <motion.div
@@ -35,16 +34,12 @@ const CommunityImpactSection: React.FC<CommunityImpactProps> = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img
-            src={
-              urlFor(image.imageUrl)
-                .width(1120)
-                .format("webp")
-                .quality(80)
-                .url() || ""
-            }
+          <Image
+            src={urlFor(image.imageUrl).width(1120).format("webp").quality(80).url()}
             alt={image.alt}
             loading="lazy"
+            width={1120}
+            height={450}
             className="w-full h-80 object-cover"
           />
         </motion.div>

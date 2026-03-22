@@ -1,27 +1,35 @@
-
 'use client';
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
-
+import Image from 'next/image';
 
 interface CustomImage {
   _id: string;
-  image: any;
+  image: {
+    asset: {
+      url: string; 
+    };
+  };
   alt: string;
   caption: string;
 }
 
 const Gallery: React.FC = () => {
   const [images, setImages] = useState<CustomImage[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const fetchImages = async () => {
       const data = await client.fetch(`
         *[_type == "customImage"]{
           _id,
-          "image": image.asset->url,
+          image {
+            asset-> {
+              url
+            }
+          },
           alt,
           caption
         }
@@ -29,19 +37,22 @@ const Gallery: React.FC = () => {
       setImages(data);
     };
     fetchImages();
+    setIsMounted(true); 
   }, []);
 
   return (
     <div className="bg-gray-100 py-16">
       <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-center mb-8"
-        >
-          Our Gallery
-        </motion.h2>
+        {isMounted && ( 
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold text-center mb-8"
+          >
+            Our Gallery
+          </motion.h2>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
             <motion.div
@@ -51,8 +62,8 @@ const Gallery: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative overflow-hidden rounded-lg shadow-md"
             >
-              <img
-                src={urlFor(image.image)
+              <Image
+                src={urlFor(image.image.asset.url)
                   .width(400)
                   .height(300)
                   .format("webp")
@@ -61,6 +72,8 @@ const Gallery: React.FC = () => {
                   .url()}
                 alt={image.alt || "Gallery image"}
                 loading="lazy"
+                width={400} 
+                height={300} 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
               {image.caption && (

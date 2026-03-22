@@ -1,41 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
-interface HeroProps {
-  title: string;
-  subtitle: string;
+interface HeroData {
   backgroundImage: {
     imageUrl: string;
   };
-  ctaText: string;
 }
 
-const HeroSection: React.FC<HeroProps> = ({
-  title,
-  subtitle,
+const HeroSection: React.FC<HeroData> = ({
   backgroundImage,
-  ctaText,
 }) => {
+
+  const clientImage = urlFor(backgroundImage.imageUrl)
+    .width(1920)
+    .format("webp")
+    .quality(80)
+    .url();
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return null;
+
   return (
     <section className="relative h-screen">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${urlFor(backgroundImage.imageUrl)
-            .width(1920)
-            .format("webp")
-            .quality(80)
-            .url()})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-      </div>
+      {clientImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${clientImage})` }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        </div>
+      )}
 
       <div className="relative z-10 h-full flex flex-col">
-        <div className="flex-grow flex items-center justify-center px-6 md:px-12 ">
+        <div className="flex-grow flex items-center justify-center px-6 md:px-12">
           <motion.div
             className="max-w-3xl text-left"
             initial={{ opacity: 0, y: 20 }}
@@ -43,17 +47,42 @@ const HeroSection: React.FC<HeroProps> = ({
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              {title}
+              Nourishing Lives, Empowering Communities
             </h1>
-            <p className="text-xl text-white mb-8">{subtitle}</p>
-            <Button className="bg-main hover:bg-orange-600 text-white font-semibold tracking-wide text-lg px-8 py-3">
-            <Link href="/Donate">{ctaText}</Link>
-            </Button>
+            <p className="text-xl text-white mb-8">
+              
+              OSS aims to improve lives and strengthen communities by providing support, resources and opportunities for everyone in need.
+              </p>
+            <Link href="/donate" passHref legacyBehavior>
+              <button className="bg-main hover:bg-orange-600 text-white font-semibold tracking-wide text-lg px-8 py-2 rounded inline-block">
+                
+                MAKE A DONATION
+              </button>
+            </Link>
           </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
+async function fetchDataFromSanity(): Promise<HeroData> {
+  return {
+    backgroundImage: {
+      imageUrl: "your-background-image-url",
+    },
+  };
+}
+
+// Fetching data at build time using getStaticProps
+export async function getStaticProps() {
+  const heroData = await fetchDataFromSanity();
+
+  return {
+    props: {
+      backgroundImage: heroData.backgroundImage,
+    },
+  };
+}
 
 export default HeroSection;

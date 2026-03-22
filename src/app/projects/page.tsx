@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 interface Projectimg {
   _id: string;
@@ -48,25 +49,34 @@ const Backdrop = ({ isActive }: { isActive: boolean }) => (
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [active, setActive] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const data = await client.fetch(`
-       *[_type == "project"]{
-          _id,
-          title,
-          description,
-          "images": images[]->{
+      try {
+        const data = await client.fetch(`
+         *[_type == "project"]{
             _id,
-            "imageUrl": image.asset->url,
-            alt,
-            caption
+            title,
+            description,
+            "images": images[]->{
+              _id,
+              "imageUrl": image.asset->url,
+              alt,
+              caption
+            }
           }
-        }
-      `);
-      setProjects(data);
+        `);
+        setProjects(data);
+      } catch (err) {
+        setError("Failed to load projects.");
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProjects();
   }, []);
@@ -90,12 +100,15 @@ const Projects: React.FC = () => {
 
   useOutsideClick(ref, () => setActive(null));
 
+  if (loading) return <div className="text-center">Loading projects...</div>;
+  if (error) return <div className="text-center text-red-500">{error}</div>;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-100 py-16 "
+      className="bg-gray-100 py-16"
     >
       <div className="container mx-auto px-4">
         <motion.h2
@@ -122,6 +135,7 @@ const Projects: React.FC = () => {
                 transition={{ duration: 0.15 }}
                 className="flex absolute top-6 right-6 lg:hidden items-center justify-center bg-red-500 rounded-full h-8 w-8 z-[110]"
                 onClick={() => setActive(null)}
+                aria-label="Close project details"
               >
                 <CloseIcon />
               </motion.button>
@@ -144,24 +158,20 @@ const Projects: React.FC = () => {
                   <div className="h-full flex flex-col">
                     <Carousel
                       className="w-full max-w-4xl mx-auto mb-4"
-                      opts={{
-                        loop: true,
-                      }}
+                      opts={{ loop: true }}
                     >
                       <CarouselContent>
                         {active.images?.map((img) => (
                           <CarouselItem key={img._id}>
                             <Card className="relative overflow-hidden">
                               <CardContent className="p-0">
-                                <img
-                                  src={
-                                    urlFor(img.imageUrl)
-                                      .width(800)
-                                      .height(450)
-                                      .format("webp")
-                                      .quality(80)
-                                      .url() || ""
-                                  }
+                                <Image
+                                  src={urlFor(img.imageUrl)
+                                    .width(800)
+                                    .height(450)
+                                    .format("webp")
+                                    .quality(80)
+                                    .url() || ""}
                                   loading="lazy"
                                   alt={img.alt}
                                   width={800}
@@ -194,20 +204,19 @@ const Projects: React.FC = () => {
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.2 }}
               className="bg-white dark:bg-neutral-800 rounded-xl shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+              aria-label={`View details for ${project.title}`}
             >
               <motion.div
                 layoutId={`img-${project._id}-${id}`}
                 className="w-full rounded-t-lg h-auto"
               >
-                <img
-                  src={
-                    urlFor(project.images[0].imageUrl)
-                      .width(400)
-                      .height(300)
-                      .format("webp")
-                      .quality(80)
-                      .url() || "/placeholder.jpg"
-                  }
+                <Image
+                  src={urlFor(project.images[0].imageUrl)
+                    .width(400)
+                    .height(300)
+                    .format("webp")
+                    .quality(80)
+                    .url() || "/placeholder.jpg"}
                   loading="lazy"
                   alt={project.images[0]?.alt || project.title}
                   width={400}
@@ -256,8 +265,8 @@ const CloseIcon = () => {
       className="h-5 w-5 text-white"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
     </motion.svg>
   );
 };

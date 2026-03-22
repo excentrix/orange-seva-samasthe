@@ -14,9 +14,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react"; // Make sure to install lucide-react
-// import { urlFor } from "@/lib/sanity";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
+import Image from 'next/image';
 
 const aboutLinks: { title: string; href: string; description: string }[] = [
   {
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
           href="/"
           className="flex items-center gap-x-2 sm:gap-x-4 text-xl sm:text-2xl font-bold text-primary"
         >
-          <img
+          <Image
             src={
               urlFor(
                 "https://cdn.sanity.io/images/5d677rbl/production/a75708d1beaaac2f2384082d358f440896c3906a-715x710.png"
@@ -67,11 +67,11 @@ const Header: React.FC = () => {
                 .url() || ""
             }
             alt="Orange Seva Samsthe Logo"
-            width={32}
-            height={32}
-            className="w-8 h-8 sm:w-12 sm:h-12"
+            width={32} // Set the desired width
+            height={32} // Set the desired height
+            className="w-8 h-8 sm:w-12 sm:h-12" // Tailwind CSS classes
           />
-          <span className="hidden sm:inline">Orange Seva Samsthe</span>
+          <h2 className="hidden sm:inline">Orange Seva Samsthe</h2>
         </Link>
 
         {/* Mobile menu button */}
@@ -176,9 +176,8 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         <nav
-          className={`lg:hidden w-full ${
-            isMenuOpen ? "block" : "hidden"
-          } mt-4 space-y-2`}
+          className={`lg:hidden w-full ${isMenuOpen ? "block" : "hidden"
+            } mt-4 space-y-2`}
         >
           <Link
             href="/"
